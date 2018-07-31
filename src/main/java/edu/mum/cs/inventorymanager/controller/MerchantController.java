@@ -5,10 +5,10 @@ import edu.mum.cs.inventorymanager.model.Merchant;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/merchant")
+@RestController("/merchants")
 public class MerchantController {
 
-    @GetMapping
+//    @GetMapping
     public Merchant findAll(){
         return new Merchant();
     }
