@@ -1,10 +1,10 @@
 package edu.mum.cs.inventorymanager.model;
 
 public enum Status {
-    NEW("",""),
-    ACTIVE("",""),
-    INACTIVE("",""),
-    DELETED("","");
+    NEW("NEW","NEW"),
+    ACTIVE("ACTIVE","ACTIVE"),
+    INACTIVE("INACTIVE","INACTIVE"),
+    DELETED("DELETED","DELETED");
 
     private String code;
     private String message;
