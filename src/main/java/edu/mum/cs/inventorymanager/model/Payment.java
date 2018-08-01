@@ -1,10 +1,8 @@
 package edu.mum.cs.inventorymanager.model;
 
-import app.core.dto.ABaseObject;
-
 import java.util.Date;
 
-public abstract class Payment  extends ABaseObject{
+public abstract class Payment{
     
     private static final long serialVersionUID = 1L;
     private String paymentDate;
@@ -94,9 +92,6 @@ public abstract class Payment  extends ABaseObject{
         this.paymentDateAsDate = paymentDateAsDate;
     }
 
-    public String getSettlementStatusDesc() {
-        return Order.SettlementStatus.lookup.get(this.settlementStatus).statusDescription;
-    }
 
     public String getChannel() {
         return channel;

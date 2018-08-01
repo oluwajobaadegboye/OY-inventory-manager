@@ -1,11 +1,9 @@
 package edu.mum.cs.inventorymanager.model;
 
-import app.core.dto.ABaseObject;
-
 import java.io.File;
 import java.util.List;
 
-public class Report extends ABaseObject implements java.io.Serializable {
+public class Report implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private int id;

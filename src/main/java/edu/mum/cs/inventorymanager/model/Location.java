@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Location implements java.io.Serializable {

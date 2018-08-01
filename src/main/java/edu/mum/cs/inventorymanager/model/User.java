@@ -17,6 +17,7 @@ public class User {
     private String noOfRetrial;
     private List<String> previousPasswords;
     private String passwordSalt;
+    private UserType userType;
 
     public int getUserId() {
         return userId;
@@ -96,5 +97,13 @@ public class User {
 
     public void setPasswordSalt(String passwordSalt) {
         this.passwordSalt = passwordSalt;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

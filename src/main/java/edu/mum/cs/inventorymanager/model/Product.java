@@ -1,9 +1,6 @@
 package edu.mum.cs.inventorymanager.model;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -94,7 +91,6 @@ public class Product implements java.io.Serializable {
     private String customerServiceNo;
     private boolean hasVariants = false;
     private String productSerialCode = null;
-    private UniqueProductItem[] uniqueProductItem;
     private List<ProductTracking> productTracking = new ArrayList<ProductTracking>();
     private boolean publishStoreFront;
     private Double productQuantityDelivered = 0.00;
@@ -618,14 +614,6 @@ public class Product implements java.io.Serializable {
 
     public void setHasVariants(boolean hasVariants) {
         this.hasVariants = hasVariants;
-    }
-
-    public UniqueProductItem[] getUniqueProductItem() {
-        return uniqueProductItem;
-    }
-
-    public void setUniqueProductItem(UniqueProductItem[] uniqueProductItem) {
-        this.uniqueProductItem = uniqueProductItem;
     }
 
     public String getProductSerialCode() {
