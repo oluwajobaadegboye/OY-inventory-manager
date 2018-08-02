@@ -1,5 +1,7 @@
 package edu.mum.cs.inventorymanager.model;
 
+import edu.mum.cs.inventorymanager.model.entity.User;
+
 import java.util.List;
 
 public class UserRole extends User {

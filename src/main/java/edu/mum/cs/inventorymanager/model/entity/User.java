@@ -1,23 +1,27 @@
-package edu.mum.cs.inventorymanager.model;
+package edu.mum.cs.inventorymanager.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="user")
+@Table(name = "tbl_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
+    @NotEmpty(message = "*First Name is required")
     private String firstName;
+    @NotEmpty(message = "*Last Name is required")
     private String lastName;
+    @NotEmpty(message = "*Mobile is required")
     private String mobile;
+    @NotEmpty(message = "*Email is required")
     private String email;
+    @NotEmpty(message = "*UserName is required")
     private String userName;
+    @NotEmpty(message = "*Password is required")
     private String password;
-    private String noOfRetrial;
-    private List<String> previousPasswords;
-    private String passwordSalt;
-    private UserType userType;
+    private String userType;
 
     public int getUserId() {
         return userId;
@@ -75,35 +79,11 @@ public class User {
         this.password = password;
     }
 
-    public String getNoOfRetrial() {
-        return noOfRetrial;
-    }
-
-    public void setNoOfRetrial(String noOfRetrial) {
-        this.noOfRetrial = noOfRetrial;
-    }
-
-    public List<String> getPreviousPasswords() {
-        return previousPasswords;
-    }
-
-    public void setPreviousPasswords(List<String> previousPasswords) {
-        this.previousPasswords = previousPasswords;
-    }
-
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
-    }
-
-    public UserType getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 }

@@ -1,8 +1,10 @@
-package edu.mum.cs.inventorymanager.model;
+package edu.mum.cs.inventorymanager.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Entity;
+import edu.mum.cs.inventorymanager.model.Location;
+import edu.mum.cs.inventorymanager.model.Status;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,27 +14,32 @@ import java.util.List;
 @XmlRootElement(name = "merchant")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Merchant extends UserRole implements java.io.Serializable {
+@Table(name="tbl_merchant")
+public class Merchant implements java.io.Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int merchantId;
     private String merchantCode;
+    @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
-    private Status merchantStatus;
+    private String merchantStatus;
     private double creditBalance;
-    private List<Location> locations;
+    private long locationId;
     private String merchantImageUrl;
+    private User user;
 
     public Merchant() {
     }
 
-    public Merchant(int merchantId, String merchantCode, String merchantName, Status merchantStatus,
-                    double creditBalance, List<Location> locations, String merchantImageUrl) {
+    public Merchant(int merchantId, String merchantCode, String merchantName, String merchantStatus,
+                    double creditBalance, long locationId, String merchantImageUrl) {
         this.merchantId = merchantId;
         this.merchantCode = merchantCode;
         this.merchantName = merchantName;
         this.merchantStatus = merchantStatus;
         this.creditBalance = creditBalance;
-        this.locations = locations;
+        this.locationId = locationId;
         this.merchantImageUrl = merchantImageUrl;
     }
 
@@ -60,12 +67,20 @@ public class Merchant extends UserRole implements java.io.Serializable {
         this.merchantName = merchantName;
     }
 
-    public Status getMerchantStatus() {
+    public String getMerchantStatus() {
         return merchantStatus;
     }
 
-    public void setMerchantStatus(Status merchantStatus) {
+    public void setMerchantStatus(String merchantStatus) {
         this.merchantStatus = merchantStatus;
+    }
+
+    public long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(long locationId) {
+        this.locationId = locationId;
     }
 
     public double getCreditBalance() {
@@ -76,19 +91,19 @@ public class Merchant extends UserRole implements java.io.Serializable {
         this.creditBalance = creditBalance;
     }
 
-    public List<Location> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
-    }
-
     public String getMerchantImageUrl() {
         return merchantImageUrl;
     }
 
     public void setMerchantImageUrl(String merchantImageUrl) {
         this.merchantImageUrl = merchantImageUrl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

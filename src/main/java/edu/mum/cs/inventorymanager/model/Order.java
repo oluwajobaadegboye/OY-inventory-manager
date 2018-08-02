@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,5 +1,7 @@
 package edu.mum.cs.inventorymanager.model;
 
+import edu.mum.cs.inventorymanager.model.entity.User;
+
 public class Salesman extends Location implements java.io.Serializable
 {
 	/**

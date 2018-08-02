@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
-import edu.mum.cs.inventorymanager.model.Merchant;
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.repository.IMerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller("/merchants")
+@Controller
 public class MerchantController {
 
 	@Autowired
 	private IMerchantRepository merchantRepository;
 
-	@RequestMapping(value={"/","/index","/browse"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/merchants/","/merchants/index","/merchants/browse"}, method=RequestMethod.GET)
 	public ModelAndView merchants() {
 		ModelAndView mav = new ModelAndView();
 		List<Merchant> merchants = merchantRepository.findAll();
@@ -29,13 +29,13 @@ public class MerchantController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/new", method = RequestMethod.GET)
+	@RequestMapping(value="/merchants/new", method = RequestMethod.GET)
 	public String registrationForm(Model model){
 		model.addAttribute("merchant", new Merchant());
 		return "merchants/new";
 	}
 	
-	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/merchants/new", method = RequestMethod.POST)
 	public String registerNewStudent(@Valid @ModelAttribute("merchant") Merchant merchant,
                                      BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -56,7 +56,7 @@ public class MerchantController {
 		return "merchants/browse";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@RequestMapping(value = "/merchants/edit", method = RequestMethod.POST)
 	public String updateStudent(@Valid @ModelAttribute("merchant") Merchant merchant,
                                 BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
