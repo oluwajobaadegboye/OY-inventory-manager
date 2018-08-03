@@ -24,18 +24,18 @@
             <th scope="col">Phone Number</th>
             <th scope="col">Email</th>
             <th scope="col">Contact Address</th>
-            <th scope="col">Business Name</th>
+            <!--<th scope="col">Business Name</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr th:each="dealer,iterStat : ${dealers}" th:onclick="@{document.location='/dealers/edit/{id}'(id=${dealer.id})}">
+        <tr th:each="dealer,iterStat : ${dealers}" th:onclick="@{document.location='/inventory-manager/dealers/edit/{id}'(id=${dealer.dealerId})}">
             <th scope="row" th:text="${iterStat.count}"></th>
             <td th:text="${dealer.firstName}"></td>
             <td th:text="${dealer.lastName}"></td>
-            <td th:text="${dealer.phoneNumber}"></td>
+            <td th:text="${dealer.mobile}"></td>
             <td th:text="${dealer.email}"></td>
             <td th:text="${dealer.contactAddress}"></td>
-            <td th:text="${dealer.businessName}"></td>
+            <!--<td th:text="${dealer.businessName}"></td>-->
         </tr>
         </tbody>
     </table>

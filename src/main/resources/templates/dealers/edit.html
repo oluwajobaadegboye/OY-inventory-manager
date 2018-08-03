@@ -8,9 +8,9 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <form id="dealerRegForm" method="post" action="/inventory-manager/dealers/new" th:object="${dealer}">
+    <form id="dealerRegForm" method="post" action="/inventory-manager/dealers/edit" th:object="${dealer}">
         <fieldset>
-            <legend>Create Dealer</legend>
+            <legend>Edit Dealer: [[${dealer.firstName}]] [[${dealer.lastName}]]</legend>
 
             <!--<input type="hidden" name="merchantId" th:value="${dealer.merchantId}" />-->
             <!--<input type="hidden" name="dealerId" th:value="${dealer.dealerId}" />-->
@@ -52,13 +52,13 @@
             </div>
 
             <!--<div class="form-group">-->
-                <!--<label for="businessName">Business Name</label>-->
-                <!--<input id="businessName" name="businessName" type="text" class="form-control" th:value="${dealer.firstName}">-->
+            <!--<label for="businessName">Business Name</label>-->
+            <!--<input id="businessName" name="businessName" type="text" class="form-control" th:value="${dealer.firstName}">-->
             <!--</div>-->
 
             <div style="float:right;">
                 <a href="/inventory-manager/dealers/index" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
-                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create</button>
+                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Save</button>
             </div>
         </fieldset>
     </form>
