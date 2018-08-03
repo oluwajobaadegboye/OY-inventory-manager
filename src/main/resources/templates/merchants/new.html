@@ -39,8 +39,7 @@
                     <label for="username">Username</label>
                     <span th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}"
                           class="alert alert-danger"></span>
-                    <input id="username" name="user.username" type="text" class="form-control" aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*" title="Email must be in the format, name@domain.tld" th:value="${merchant.user.email}">
-                    <small id="usernameAddressHelp" class="form-text text-muted">Enter a valid email address; in the format as specified.</small>
+                    <input id="username" name="user.username" type="text" class="form-control" aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com" th:value="${merchant.user.username}">
                 </div>
 
 

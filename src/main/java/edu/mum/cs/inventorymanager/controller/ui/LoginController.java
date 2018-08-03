@@ -19,17 +19,17 @@ public class LoginController {
     private final LoginService loginService;
 
     @Autowired
-    public LoginController(LoginService loginService){
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
-    @RequestMapping(value={"/login"}, method=RequestMethod.GET)
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String loginForm(Model model) {
         model.addAttribute("login", new Login());
         return "common/login";
     }
 
-    @RequestMapping(value={"/login"}, method=RequestMethod.POST)
+    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(@Valid @ModelAttribute("login") Login login,
                         BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -37,7 +37,11 @@ public class LoginController {
             return "common/login";
         }
         Merchant merchant = loginService.login(login);
-        return "redirect:/login";
+        if (merchant != null) {
+            return "redirect:/dashbaord";
+        } else {
+            return "redirect:/login";
+        }
     }
 
 }
