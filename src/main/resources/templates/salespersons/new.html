@@ -7,49 +7,61 @@
     <title>Inventory Manager - New Salesperson</title>
 </head>
 <body>
-    <th:block layout:fragment="content">
-        <form id="stuRegForm" method="post">
-            <fieldset>
-                <legend>Create Salesperson</legend>
-                <div class="form-group">
-                    <label>Staff No</label>
-                    <input id="staffNo"  name="user.no" type="text" class="form-control">
-                </div>
+<th:block layout:fragment="content">
+    <form id="stuRegForm" method="post" action="/inventory-manager/salespersons/new" th:object="${salesperson}">
+        <fieldset>
+            <legend>Create Salesperson</legend>
 
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input id="firstName"  name="user.firstName" type="text" class="form-control">
-                </div>
+            <div class="form-group">
+                <label>Staff No</label>
+                <input id="staffId" name="staffId" type="text" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" name="user.lastName" type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" name="user.email" type="email" class="form-control"
-                           aria-describedby="emailAddressHelp" placeholder="e.g. name@domain.com"
-                           pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
-                           title="Email must be in the format, name@domain.tld">
-                    <small id="emailAddressHelp" class="form-text text-muted">Enter a valid email address; in the format as
-                        specified.
-                    </small>
-                </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="user.firstName" type="text" class="form-control">
+            </div>
 
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="user.lastName" type="text" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="mobile">Phone Number</label>
-                    <input id="mobile" name="user.mobile" type="text" class="form-control">
-                </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="user.email" type="email" class="form-control"
+                       aria-describedby="emailAddressHelp" placeholder="e.g. name@domain.com"
+                       pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+                       title="Email must be in the format, name@domain.tld">
+                <small id="emailAddressHelp" class="form-text text-muted">Enter a valid email address; in the format as
+                    specified.
+                </small>
+            </div>
 
-                <div style="float:right;">
-                    <a href="/inventory-manager/salespersons/index" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
-                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create</button>
-                </div>
-            </fieldset>
-        </form>
-    </th:block>
+            <div class="form-group">
+                <label for="mobile">Phone Number</label>
+                <input id="mobile" name="user.mobile" type="text" class="form-control">
+            </div>
 
-    <th:block layout:fragment="footer"></th:block>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" name="user.username" type="text" class="form-control"
+                       aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="user.password" type="password" class="form-control">
+            </div>
+
+            <div style="float:right;">
+                <a href="/inventory-manager/salespersons/index" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create</button>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Management System - Browse List of Products</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <span style="font-size: 1.5em">List of Dealers</span>
+        <span style="float:right;">
+                <a class="btn btn-outline-success btn-lg" href="/inventory-manager/dealers/new">Register New Dealer</a>
+            </span>
+    </div>
+    <p>&nbsp;</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact Address</th>
+            <th scope="col">Business Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dealer,iterStat : ${dealers}" th:onclick="@{document.location='/dealers/edit/{id}'(id=${dealer.id})}">
+            <th scope="row" th:text="${iterStat.count}"></th>
+            <td th:text="${dealer.firstName}"></td>
+            <td th:text="${dealer.lastName}"></td>
+            <td th:text="${dealer.phoneNumber}"></td>
+            <td th:text="${dealer.email}"></td>
+            <td th:text="${dealer.contactAddress}"></td>
+            <td th:text="${dealer.businessName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
