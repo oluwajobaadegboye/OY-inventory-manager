@@ -17,11 +17,23 @@ public class User {
     private String mobile;
     @NotEmpty(message = "*Email is required")
     private String email;
-    @NotEmpty(message = "*UserName is required")
-    private String userName;
+    @NotEmpty(message = "*Username is required")
+    private String username;
     @NotEmpty(message = "*Password is required")
     private String password;
     private String userType;
+
+    public User(){}
+
+    public User(@NotEmpty(message = "*First Name is required") String firstName, @NotEmpty(message = "*Last Name is required") String lastName, @NotEmpty(message = "*Mobile is required") String mobile, @NotEmpty(message = "*Email is required") String email, @NotEmpty(message = "*UserName is required") String userName, @NotEmpty(message = "*Password is required") String password, String userType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobile = mobile;
+        this.email = email;
+        this.username = userName;
+        this.password = password;
+        this.userType = userType;
+    }
 
     public int getUserId() {
         return userId;
@@ -63,12 +75,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

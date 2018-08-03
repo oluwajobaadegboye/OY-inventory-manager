@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.repository;
 
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,11 @@ public interface IMerchantRepository extends JpaRepository<Merchant, Long> {
 
     Merchant findByMerchantId(long id);
 
-    Merchant findByEmail(String email);
+    Merchant findByMerchantName(String merchantName);
 
-    Merchant findByUsername(String userName);
+    Merchant findByUser(User user);
+
+//    Merchant findByEmail(String email);
+//
+//    Merchant findByUsername(String userName);
 }

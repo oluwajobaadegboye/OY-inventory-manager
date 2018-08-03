@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.dao;
 
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.entity.User;
 import edu.mum.cs.inventorymanager.repository.IMerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,10 @@ public class MerchantDao {
         return merchantRepository.findByMerchantId(id);
     }
     public Merchant findByEmail(String email){
-        return merchantRepository.findByEmail(email);
+        return null;//merchantRepository.findByEmail(email);
     }
     public Merchant findByUsername(String userName){
-        return merchantRepository.findByUsername(userName);
+        return null;//merchantRepository.findByUsername(userName);
     }
     public List<Merchant> findByAll(){
         return merchantRepository.findAll();
@@ -34,5 +35,13 @@ public class MerchantDao {
     }
     public Merchant update(Merchant merchant){
         return merchantRepository.save(merchant);
+    }
+
+    public Merchant findByMerchantName(String merchantName) {
+        return merchantRepository.findByMerchantName(merchantName);
+    }
+
+    public Merchant findByUser(User user) {
+        return merchantRepository.findByUser(user);
     }
 }

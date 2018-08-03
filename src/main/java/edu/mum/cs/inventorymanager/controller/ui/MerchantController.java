@@ -1,7 +1,7 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
-import edu.mum.cs.inventorymanager.repository.IMerchantRepository;
+import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,52 +18,52 @@ import java.util.List;
 public class MerchantController {
 
 	@Autowired
-	private IMerchantRepository merchantRepository;
+	private MerchantService merchantService;
 
 	@RequestMapping(value={"/merchants/","/merchants/index","/merchants/browse"}, method=RequestMethod.GET)
 	public ModelAndView merchants() {
 		ModelAndView mav = new ModelAndView();
-		List<Merchant> merchants = merchantRepository.findAll();
+		List<Merchant> merchants = merchantService.findAll();
 		mav.addObject("merchants", merchants);
 		mav.setViewName("merchants/index");
 		return mav;
 	}
 	
 	@RequestMapping(value="/merchants/new", method = RequestMethod.GET)
-	public String registrationForm(Model model){
+	public String createMerchantForm(Model model){
 		model.addAttribute("merchant", new Merchant());
 		return "merchants/new";
 	}
 	
 	@RequestMapping(value = "/merchants/new", method = RequestMethod.POST)
-	public String registerNewStudent(@Valid @ModelAttribute("merchant") Merchant merchant,
+	public String registerNewMerchant(@Valid @ModelAttribute("merchant") Merchant merchant,
                                      BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "merchants/new";
 		}
-		merchant = merchantRepository.save(merchant);
-		return "redirect:/merchants/index";
+		merchant = merchantService.create(merchant);
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value="/merchants/edit/{id}", method = RequestMethod.GET)
-	public String editStudent(@PathVariable Long id, Model model){
-		Merchant s = merchantRepository.findByMerchantId(id);
+	public String editMerchant(@PathVariable Long id, Model model){
+		Merchant s = merchantService.findById(id);
 		if (s != null) {
 			model.addAttribute("merchant", s);
 			return "merchants/edit";
 		}
-		return "merchants/browse";
+		return "merchants/dashboard";
 	}
 	
 	@RequestMapping(value = "/merchants/edit", method = RequestMethod.POST)
-	public String updateStudent(@Valid @ModelAttribute("merchant") Merchant merchant,
+	public String updateMerchant(@Valid @ModelAttribute("merchant") Merchant merchant,
                                 BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "merchants/edit";
 		}
-		merchant = merchantRepository.save(merchant);
-		return "redirect:/merchants/browse";
+		merchant = merchantService.update(merchant);
+		return "redirect:/merchants/dashboard";
 	}
 }
