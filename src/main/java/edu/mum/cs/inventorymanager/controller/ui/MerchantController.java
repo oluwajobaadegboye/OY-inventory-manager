@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class MerchantController {
 	
 	@RequestMapping(value = "/merchants/new", method = RequestMethod.POST)
 	public String registerNewMerchant(@Valid @ModelAttribute("merchant") Merchant merchant,
-                                     BindingResult bindingResult, Model model) {
+									  BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "merchants/new";

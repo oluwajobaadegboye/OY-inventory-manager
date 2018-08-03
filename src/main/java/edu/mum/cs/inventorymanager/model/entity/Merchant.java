@@ -3,6 +3,7 @@ package edu.mum.cs.inventorymanager.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -20,12 +21,13 @@ public class Merchant {
 //    private String merchantCode;
     @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
-    private String merchantStatus;
+    private String merchantStatus="Active";
 //    private double creditBalance;
     private long locationId;
     private String merchantImageUrl;
     @OneToOne
     @JoinColumn(name = "userId")
+    @NotNull
     private User user;
 
     public Merchant() {

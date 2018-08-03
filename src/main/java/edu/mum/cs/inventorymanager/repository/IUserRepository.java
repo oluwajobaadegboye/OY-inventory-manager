@@ -20,5 +20,5 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     User findByMobile(String mobile);
 
-    User findByUserNameAndPassword(String userName, String password);
+    User findByUsernameAndPassword(String username, String password);
 }

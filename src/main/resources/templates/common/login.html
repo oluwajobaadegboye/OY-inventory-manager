@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Manager - New Merchant</title>
 </head>
 <body>
+<th:block layout:fragment="content">
+    <form id="myForm" method="post" action="/inventory-manager/login" th:object="${login}">
+        <fieldset>
+            <legend>Login Form</legend>
+
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                      class="alert alert-danger"></span>
+                <input id="username" name="username" type="text" class="form-control" th:value="${login.username}">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                      class="alert alert-danger"></span>
+                <input id="password" name="password" type="password" class="form-control" th:value="${login.password}">
+            </div>
+
+
+            <div style="float:right;">
+                <a href="/inventory-manager/home" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Login</button>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
 
 </body>
 </html>

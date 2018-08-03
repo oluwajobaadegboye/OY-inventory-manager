@@ -62,6 +62,6 @@ public class UserDao {
     }
 
     public User findByUserNameAndPassword(String userName, String password) {
-        return userRepository.findByUserNameAndPassword(userName,password);
+        return userRepository.findByUsernameAndPassword(userName,password);
     }
 }
