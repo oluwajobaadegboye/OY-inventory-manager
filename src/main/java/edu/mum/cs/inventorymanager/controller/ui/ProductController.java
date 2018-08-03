@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 public class ProductController {
 
-    @RequestMapping(value={"/merchants/","/merchants/index","/merchants/browse"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/products/","/products/index","/products/browse"}, method=RequestMethod.GET)
     public ModelAndView merchants() {
         ModelAndView mav = new ModelAndView();
 //        List<Merchant> merchants = merchantService.findAll();
