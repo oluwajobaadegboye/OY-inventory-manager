@@ -1,6 +1,7 @@
-package edu.mum.cs.inventorymanager.service.contract;
+package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.model.Salesman;
+import edu.mum.cs.inventorymanager.service.contract.SalespersonService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

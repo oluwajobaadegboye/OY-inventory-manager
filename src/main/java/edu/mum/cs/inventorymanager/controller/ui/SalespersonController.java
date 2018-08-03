@@ -19,11 +19,11 @@ public class SalespersonController {
     @Autowired
     private SalespersonService salespersonService;
 
-    @GetMapping(value={"/salespersons/", "/salespersons/index", "/salespersons/browse"})
+    @GetMapping(value={"/salespersons/", "/salespersons/index"})
     public ModelAndView salespersons() {
         ModelAndView mav = new ModelAndView();
-//        List<Salesman> salespersons = salespersonService.findAll();
-//        mav.addObject("salespersons", null);
+        List<Salesman> salespersons = salespersonService.findAll();
+        mav.addObject("salespersons", salespersons);
         mav.setViewName("salespersons/index");
         return mav;
     }
@@ -41,8 +41,8 @@ public class SalespersonController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "merchants/new";
         }
-        salesperson = salespersonService.create(salesperson);
-        return "redirect:/login";
+        salespersonService.create(salesperson);
+        return "redirect:/salespersons/index";
     }
 
 //    @GetMapping(value="/salespersons/edit/{id}")

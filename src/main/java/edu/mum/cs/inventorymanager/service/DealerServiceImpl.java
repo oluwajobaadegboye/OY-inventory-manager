@@ -1,7 +1,8 @@
-package edu.mum.cs.inventorymanager.service.contract;
+package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
 import edu.mum.cs.inventorymanager.repository.IDealerRepository;
+import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -26,12 +26,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="salesperson,iterStat : ${salespersons}" th:onclick="@{document.location='/salesperson/edit/{sId}'(sId=${salesperson.studentId})}">
+        <tr th:each="salesperson, iterStat : ${salespersons}" th:onclick="@{document.location='/salespersons/edit/{id}'(id=${salesperson.salesmanId})}">
             <th scope="row" th:text="${iterStat.count}"></th>
-            <td th:text="${salesperson.firstName}"></td>
-            <td th:text="${salesperson.lastName}"></td>
-            <td th:text="${salesperson.mobile}"></td>
-            <td th:text="${salesperson.email}"></td>
+            <td th:text="${salesperson.user.firstName}"></td>
+            <td th:text="${salesperson.user.lastName}"></td>
+            <td th:text="${salesperson.user.mobile}"></td>
+            <td th:text="${salesperson.user.email}"></td>
         </tr>
         </tbody>
     </table>
