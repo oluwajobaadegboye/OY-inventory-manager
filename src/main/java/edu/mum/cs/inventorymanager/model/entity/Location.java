@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "tbl_location",
         uniqueConstraints={
-                @UniqueConstraint(columnNames = {"merchant_id", "location_name"})
+                @UniqueConstraint(columnNames = {"merchantId", "locationName"})
         })
 public class Location {
 
@@ -20,9 +20,7 @@ public class Location {
     @OneToOne
     @JoinColumn(name = "merchantId")
     private Merchant merchant;
-
     @NotEmpty(message = "*address is required")
     private String address;
-
 
 }

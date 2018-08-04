@@ -7,8 +7,19 @@
     <title>Inventory Manager - New Merchant</title>
 </head>
 <body>
+  <!-- /login?error=true -->
+      <div th:if="${#request.getParameter('error') == 'true'}"
+                       style="color:red;margin:10px 0px;">
+             Login Failed!!!<br />
+             Reason :
+             <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+                               th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+                
+          </div>
 <th:block layout:fragment="content">
-    <form id="myForm" method="post" action="/inventory-manager/login" th:object="${login}">
+    <form id="myForm" method="post" th:action="@{/j_spring_security_check}" th:object="${login}">
         <fieldset>
             <legend>Login Form</legend>
 
@@ -24,6 +35,12 @@
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                       class="alert alert-danger"></span>
                 <input id="password" name="password" type="password" class="form-control" th:value="${login.password}">
+            </div>
+
+            <div class="form-group">
+                <label>Remember Me?</label>
+                <input type="checkbox" name="remember-me" />
+                <!--<input id="password" name="password" type="password" class="form-control" th:value="${login.password}">-->
             </div>
 
 

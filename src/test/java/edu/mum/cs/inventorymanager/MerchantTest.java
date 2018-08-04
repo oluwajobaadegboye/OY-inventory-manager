@@ -25,7 +25,7 @@ public class MerchantTest {
     @Before
     public void setUp(){
         User user = new User("Oluwajoba","Adegboye","2348031377870","oadegboye@mum.edu","oluwajoba","joba123",UserType.MERCHANT.getType());
-        merchant = new Merchant("OluwajobaBiz","Active",user);
+        merchant = new Merchant("OluwajobaBiz","Active",user,"my address");
     }
 
 //    @Test

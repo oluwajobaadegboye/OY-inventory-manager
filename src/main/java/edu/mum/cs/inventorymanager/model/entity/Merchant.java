@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="tbl_merchant",
         uniqueConstraints = @UniqueConstraint(
-                columnNames = {"merchant_name"}
+                columnNames = {"merchantName"}
         )
 )
 public class Merchant {
@@ -102,5 +102,13 @@ public class Merchant {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

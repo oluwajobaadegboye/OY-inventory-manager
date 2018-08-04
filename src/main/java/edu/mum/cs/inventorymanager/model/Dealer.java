@@ -1,22 +1,23 @@
 package edu.mum.cs.inventorymanager.model;
 
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
+
+import javax.validation.constraints.NotEmpty;
+
 public class Dealer {
-    private  int  dealerId;
-    private  String  dealerCode;
-    private  int  producerMerchantId;
-    private String producerMerchantName;
-    private String bankName;
-    private  int  dealerMerchantId;
-    private  int  bankId;
-    private  double  dealerCreditLimit;
-    private  String  chargeCardNumber;
-    private  String  chargeCardExpire;
-    private  int  accountType;
-    private String dealerName;
-    private double totalAmount;
+
+    private int dealerId;
+    private String dealerBusinessAddress;
+    private long merchantId;
+    private String merchantName;
+    @NotEmpty(message = "*First Name is required")
+    private String firstName;
+    @NotEmpty(message = "*Last Name is required")
+    private String lastName;
+    @NotEmpty(message = "*Mobile is required")
+    private String mobile;
+    @NotEmpty(message = "*Email is required")
+    private String email;
     private String contactAddress;
-    private int businessUnitId;
-    private int generateDealerCode;
-    private int setupCredit;
-    private int creditProfileId;
+
 }
