@@ -19,7 +19,7 @@ public class SalespersonController {
     @Autowired
     private SalespersonService salespersonService;
 
-    @GetMapping(value={"/salespersons/", "/salespersons/index"})
+    @GetMapping(value={"/salespersons", "/salespersons/", "/salespersons/index"})
     public ModelAndView salespersons() {
         ModelAndView mav = new ModelAndView();
         List<Salesman> salespersons = salespersonService.findAll();

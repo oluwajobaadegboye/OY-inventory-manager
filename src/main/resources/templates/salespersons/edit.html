@@ -4,22 +4,22 @@
       layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Inventory Manager - New Merchant</title>
+    <title>Inventory Manager - Edit Merchant</title>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <form id="stuRegForm" method="post" action="/inventory-manager/sales/new" th:object="${salesperson}">
+    <form id="stuRegForm" method="post" action="/inventory-manager/sales/edit" th:object="${salesperson}">
         <fieldset>
             <legend>Edit Salesperson</legend>
             <!--<input type="hidden" name="merchantId" th:value="${merchant.merchantId}"/>-->
             <!--<input type="hidden" name="user.userType" th:value="MERCHANT"/>-->
 
             <div class="form-group">
-                <label for="staffNo">Staff No</label>
-                <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}"
+                <label for="staffId">Staff Id</label>
+                <span th:if="${#fields.hasErrors('staffId')}" th:errors="*{staffId}"
                       class="alert alert-danger"></span>
-                <input id="firstName" name="user.firstName" type="text" class="form-control"
-                       th:value="${merchant.user.firstName}">
+                <input id="staffId" name="staffId" type="text" class="form-control"
+                       th:value="${merchant.staffId}">
             </div>
 
             <div class="form-group">

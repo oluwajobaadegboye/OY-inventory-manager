@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="tbl_merchant",
         uniqueConstraints = @UniqueConstraint(
-                columnNames = {"merchant_name"}
+                columnNames = {"merchantName"}
         )
 )
 public class Merchant {
