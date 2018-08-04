@@ -4,14 +4,14 @@
 	layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
-    <title>Student Registration System - Browse List of Students</title>
+    <title>Inventory Management System - Browse List of Merchants</title>
 </head>
 <body>
     <th:block layout:fragment="content">
         <div>
             <span style="font-size: 1.5em">List of Registered Merchant</span>
             <span style="float:right;">
-                <a class="btn btn-outline-success btn-lg" href="/merchants/new">Register New Merchant</a>
+                <a class="btn btn-outline-success btn-lg" href="/inventory-manager/merchants/new">Register New Merchant</a>
             </span>
         </div>
         <p>&nbsp;</p>
@@ -26,12 +26,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="student,iterStat : ${merchants}" th:onclick="@{document.location='/merchants/edit/{sId}'(sId=${student.studentId})}">
+                <tr th:each="merchant, iterStat : ${merchants}" th:onclick="@{document.location='/merchants/edit/{sId}'(sId=${merchant.merchantId})}">
                     <th scope="row" th:text="${iterStat.count}"></th>
-                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${merchant.user.firstName}"></td>
                     <!--<td th:text="${student.middleName}"></td>-->
-                    <td th:text="${student.lastName}"></td>
-                    <td th:text="${student.email}"></td>
+                    <td th:text="${merchant.user.lastName}"></td>
+                    <td th:text="${merchant.user.email}"></td>
                 </tr>
             </tbody>
         </table>
