@@ -12,10 +12,13 @@
         <fieldset>
             <legend>Create Salesperson</legend>
 
+            <input type="hidden" name="salesmanId" th:value="${salesperson.salesmanId}" />
+            <input type="hidden" name="user.userType" th:value="MERCHANT" />
+
             <div class="form-group">
                 <label>Staff No</label>
                 <span th:if="${#fields.hasErrors('staffId')}" th:errors="*{salesperson.staffId}"
-                class="alert alert-danger"></span>
+                      class="alert alert-danger"></span>
                 <input id="staffId" name="staffId" type="text" class="form-control" th:value="${salesperson.staffId}">
             </div>
 
@@ -23,14 +26,16 @@
                 <label for="firstName">First Name</label>
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{salesperson.user.firstName}"
                       class="alert alert-danger"></span>
-                <input id="firstName" name="user.firstName" type="text" class="form-control" th:value="${salesperson.user.firstName}">
+                <input id="firstName" name="user.firstName" type="text" class="form-control"
+                       th:value="${salesperson.user.firstName}">
             </div>
 
             <div class="form-group">
                 <label for="lastName">Last Name</label>
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{salesperson.user.lastName}"
                       class="alert alert-danger"></span>
-                <input id="lastName" name="user.lastName" type="text" class="form-control" th:value="${salesperson.user.lastName}">
+                <input id="lastName" name="user.lastName" type="text" class="form-control"
+                       th:value="${salesperson.user.lastName}">
             </div>
 
             <div class="form-group">
@@ -50,7 +55,8 @@
                 <label for="mobile">Phone Number</label>
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{salesperson.user.mobile}"
                       class="alert alert-danger"></span>
-                <input id="mobile" name="user.mobile" type="text" class="form-control" th:value="${salesperson.user.mobile}">
+                <input id="mobile" name="user.mobile" type="text" class="form-control"
+                       th:value="${salesperson.user.mobile}">
             </div>
 
             <div class="form-group">
@@ -58,14 +64,16 @@
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{salesperson.user.username}"
                       class="alert alert-danger"></span>
                 <input id="username" name="user.username" type="text" class="form-control"
-                       aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com" th:value="${salesperson.user.username}">
+                       aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com"
+                       th:value="${salesperson.user.username}">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{salesperson.user.password}"
                       class="alert alert-danger"></span>
-                <input id="password" name="user.password" type="password" class="form-control" th:value="${salesperson.user.password}">
+                <input id="password" name="user.password" type="password" class="form-control"
+                       th:value="${salesperson.user.password}">
             </div>
 
             <div style="float:right;">

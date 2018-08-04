@@ -4,13 +4,13 @@
       layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Inventory Manager - New Product</title>
+    <title>Inventory Manager - Edit Product</title>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <form id="prodRegForm" method="post" action="/inventory-manager/products/new" th:object="${product}">
+    <form id="prodRegForm" method="post" action="/inventory-manager/products/edit" th:object="${product}">
         <fieldset>
-            <legend>Create Product</legend>
+            <legend>Edit Product - [[${product.name}]]</legend>
             <input type="hidden" name="id" th:value="${product.id}" />
             <div class="form-group">
                 <label>Product Name</label>
@@ -39,7 +39,7 @@
             </div>
             <div style="float:right;">
                 <a href="/inventory-manager/products/index" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
-                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create</button>
+                <button id="btnSubmit" type="submit" class="btn btn-outline-success">Save</button>
             </div>
         </fieldset>
     </form>

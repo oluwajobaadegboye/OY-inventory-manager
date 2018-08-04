@@ -20,7 +20,7 @@ public class DealerController {
     @Autowired
     private DealerService dealerService;
 
-    @GetMapping(value = {"/dealers/", "/dealers/index"})
+    @GetMapping(value = {"/dealers", "/dealers/", "/dealers/index"})
     public ModelAndView dealers() {
         ModelAndView modelAndView = new ModelAndView();
         List<Dealer> dealers = dealerService.findAll();
