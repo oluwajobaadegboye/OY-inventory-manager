@@ -1,13 +1,14 @@
 package edu.mum.cs.inventorymanager.dao.securityDao;
 
-import edu.mum.cs.inventorymanager.model.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.List;
+
+import edu.mum.cs.inventorymanager.model.security.UserRole;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional

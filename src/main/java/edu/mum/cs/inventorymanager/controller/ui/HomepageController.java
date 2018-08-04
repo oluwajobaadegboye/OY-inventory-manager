@@ -11,4 +11,10 @@ public class HomepageController {
 	public String homepage() {
 		return "homepage/index";
 	}
+
+
+	@RequestMapping(value={"/userlayout"}, method=RequestMethod.GET)
+	public String userlayout() {
+		return "common/usermasterlayout";
+	}
 }
