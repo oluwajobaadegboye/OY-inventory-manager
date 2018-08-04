@@ -7,37 +7,53 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement(name = "merchant")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name="tbl_merchant")
+@Table(name="tbl_merchant",
+        uniqueConstraints = @UniqueConstraint(
+                columnNames = {"merchant_name"}
+        )
+)
 public class Merchant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int merchantId;
-//    private String merchantCode;
     @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
     private String merchantStatus="Active";
-//    private double creditBalance;
-    private long locationId;
+    @ManyToMany
+    @JoinColumn(name = "locationId")
+    private List<Location> locations;
     private String merchantImageUrl;
     @OneToOne
     @JoinColumn(name = "userId")
     @NotNull
     private User user;
+    @NotEmpty(message = "*address is required")
+    private String address;
 
     public Merchant() {
     }
 
 
-    public Merchant(String merchantName, String merchantStatus,User user) {
+    public Merchant(String merchantName, String merchantStatus,User user,String address) {
         this.merchantName = merchantName;
         this.merchantStatus = merchantStatus;
         this.user = user;
+        this.address = address;
+    }
+
+    public Merchant(String merchantName, String merchantStatus,User user,List<Location> locations,String address) {
+        this.merchantName = merchantName;
+        this.merchantStatus = merchantStatus;
+        this.user = user;
+        this.locations = locations;
+        this.address = address;
     }
 
     public int getMerchantId() {
@@ -47,14 +63,6 @@ public class Merchant {
     public void setMerchantId(int merchantId) {
         this.merchantId = merchantId;
     }
-
-//    public String getMerchantCode() {
-//        return merchantCode;
-//    }
-//
-//    public void setMerchantCode(String merchantCode) {
-//        this.merchantCode = merchantCode;
-//    }
 
     public String getMerchantName() {
         return merchantName;
@@ -72,21 +80,13 @@ public class Merchant {
         this.merchantStatus = merchantStatus;
     }
 
-    public long getLocationId() {
-        return locationId;
+    public List<Location> getLocations() {
+        return locations;
     }
 
-    public void setLocationId(long locationId) {
-        this.locationId = locationId;
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
-
-//    public double getCreditBalance() {
-//        return creditBalance;
-//    }
-//
-//    public void setCreditBalance(double creditBalance) {
-//        this.creditBalance = creditBalance;
-//    }
 
     public String getMerchantImageUrl() {
         return merchantImageUrl;
