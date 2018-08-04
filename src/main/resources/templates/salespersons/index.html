@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Student Registration System - Browse List of Students</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <span style="font-size: 1.5em">List of Salespersons</span>
+        <span style="float:right;">
+                <a class="btn btn-outline-success btn-lg" href="/inventory-manager/salespersons/new">Register New Salesperson</a>
+            </span>
+    </div>
+    <p>&nbsp;</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="salesperson, iterStat : ${salespersons}" th:onclick="@{document.location='/salespersons/edit/{id}'(id=${salesperson.salesmanId})}">
+            <th scope="row" th:text="${iterStat.count}"></th>
+            <td th:text="${salesperson.user.firstName}"></td>
+            <td th:text="${salesperson.user.lastName}"></td>
+            <td th:text="${salesperson.user.mobile}"></td>
+            <td th:text="${salesperson.user.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
