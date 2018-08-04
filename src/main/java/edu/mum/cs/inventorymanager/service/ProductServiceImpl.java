@@ -16,6 +16,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product) {
+        product.setStatus("Active");
         return productRepository.save(product);
     }
 
@@ -26,12 +27,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return productRepository.findByStatus("Active");
     }
 
     @Override
     public void delete(Product product) {
-        productRepository.delete(product);
+        product.setStatus("Deleted");
+        productRepository.save(product);
     }
 
     @Override

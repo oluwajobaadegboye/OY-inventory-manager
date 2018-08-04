@@ -20,6 +20,7 @@ public class Product {
     private double costPrice;
     private double sellingPrice;
     private int quantity;
+    private String status;
 
     public long getId() {
         return id;
@@ -59,5 +60,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
