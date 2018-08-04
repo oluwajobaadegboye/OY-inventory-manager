@@ -26,7 +26,7 @@ public class Merchant {
     @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
     private String merchantStatus="Active";
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "locationId")
     private List<Location> locations;
     private String merchantImageUrl;

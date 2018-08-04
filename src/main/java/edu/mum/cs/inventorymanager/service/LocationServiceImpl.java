@@ -1,74 +1,60 @@
 package edu.mum.cs.inventorymanager.service;
 
-import edu.mum.cs.inventorymanager.dao.MerchantDao;
+import edu.mum.cs.inventorymanager.dao.LocationDao;
+import edu.mum.cs.inventorymanager.model.entity.Location;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
-import edu.mum.cs.inventorymanager.model.entity.User;
-import edu.mum.cs.inventorymanager.service.contract.MerchantService;
-import edu.mum.cs.inventorymanager.service.contract.UserService;
+import edu.mum.cs.inventorymanager.service.contract.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-public class MerchantServiceImpl implements MerchantService {
-    private final MerchantDao merchantDao;
-    private final UserService userService;
-    private final LocationSer
+public class LocationServiceImpl implements LocationService {
+    private final LocationDao locationDao;
+
     @Autowired
-    public MerchantServiceImpl(MerchantDao merchantDao,UserService userService){
-        this.merchantDao = merchantDao;
-        this.userService = userService;
+    public LocationServiceImpl(LocationDao locationDao){
+        this.locationDao = locationDao;
     }
 
     @Override
-    public Merchant create(Merchant merchant) {
-        userService.create(merchant.getUser());
-
-        return merchantDao.createMerchant(merchant);
+    public Location findByLocationName(String locationName) {
+        return locationDao.findByLocationName(locationName);
     }
 
     @Override
-    public Merchant findById(Long id) {
-        return merchantDao.findByMerchantId(id);
+    public Location findMerchant(Merchant merchant) {
+        return locationDao.findMerchant(merchant);
     }
 
     @Override
-    public Merchant findByEmail(String email) {
-        return merchantDao.findByEmail(email);
+    public Location create(Location location) {
+        return locationDao.createLocation(location);
     }
 
     @Override
-    public Merchant findByUsername(String userName) {
-        return merchantDao.findByUsername(userName);
+    public Location findById(Long id) {
+        return locationDao.findById(id);
     }
 
     @Override
-    public Merchant findByMerchantName(String merchantName) {
-        return merchantDao.findByMerchantName(merchantName);
+    public List<Location> findAll() {
+        return locationDao.findAll();
     }
 
     @Override
-    public Merchant findUser(User user) {
-        return merchantDao.findByUser(user);
+    public void delete(Location location) {
+        locationDao.delete(location);
     }
 
     @Override
-    public List<Merchant> findAll() {
-        return merchantDao.findByAll();
+    public void deleteById(long id) {
+        locationDao.deleteById(id);
     }
 
     @Override
-    public void delete(Merchant merchant) {
-        merchantDao.delete(merchant);
-    }
-
-    @Override
-    public void deleteById(long merchantId) {
-        merchantDao.delete(merchantId);
-    }
-
-    @Override
-    public Merchant update(Merchant merchant) {
-       return merchantDao.update(merchant);
+    public Location update(Location location) {
+        return locationDao.update(location);
     }
 }

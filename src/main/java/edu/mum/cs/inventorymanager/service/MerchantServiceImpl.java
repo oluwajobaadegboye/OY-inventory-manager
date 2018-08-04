@@ -1,8 +1,10 @@
 package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.dao.MerchantDao;
+import edu.mum.cs.inventorymanager.model.entity.Location;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.entity.User;
+import edu.mum.cs.inventorymanager.service.contract.LocationService;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import edu.mum.cs.inventorymanager.service.contract.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +15,18 @@ import java.util.List;
 public class MerchantServiceImpl implements MerchantService {
     private final MerchantDao merchantDao;
     private final UserService userService;
+    private final LocationService locationService;
     @Autowired
-    public MerchantServiceImpl(MerchantDao merchantDao,UserService userService){
+    public MerchantServiceImpl(MerchantDao merchantDao,UserService userService,LocationService locationService){
         this.merchantDao = merchantDao;
         this.userService = userService;
+        this.locationService = locationService;
     }
 
     @Override
     public Merchant create(Merchant merchant) {
         userService.create(merchant.getUser());
+//        locationService.create(new Location(merchant.getUser().getUsername(),merchant.getAddress()));
         return merchantDao.createMerchant(merchant);
     }
 
