@@ -1,4 +1,4 @@
-package edu.mum.cs.inventorymanager.model;
+package edu.mum.cs.inventorymanager.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
