@@ -26,9 +26,9 @@ public class Merchant {
     @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
     private String merchantStatus="Active";
-    @ManyToMany
-    @JoinColumn(name = "locationId")
-    private List<Location> locations;
+    //    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "locationId")
+//    private List<Location> locations;
     private String merchantImageUrl;
     @OneToOne
     @JoinColumn(name = "userId")
@@ -52,7 +52,7 @@ public class Merchant {
         this.merchantName = merchantName;
         this.merchantStatus = merchantStatus;
         this.user = user;
-        this.locations = locations;
+//        this.locations = locations;
         this.address = address;
     }
 
@@ -80,13 +80,13 @@ public class Merchant {
         this.merchantStatus = merchantStatus;
     }
 
-    public List<Location> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
-    }
+//    public List<Location> getLocations() {
+//        return locations;
+//    }
+//
+//    public void setLocations(List<Location> locations) {
+//        this.locations = locations;
+//    }
 
     public String getMerchantImageUrl() {
         return merchantImageUrl;
@@ -102,5 +102,13 @@ public class Merchant {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

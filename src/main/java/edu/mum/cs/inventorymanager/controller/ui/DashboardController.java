@@ -16,7 +16,7 @@ public class DashboardController {
     @RequestMapping(value={"/dashbaord"}, method=RequestMethod.GET)
     public ModelAndView loginForm(Model model, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("merchants/dashboard");
+        modelAndView.setViewName("common/usermasterlayout");//merchants/dashboard
         modelAndView.addObject(new Merchant());
         return modelAndView;
     }

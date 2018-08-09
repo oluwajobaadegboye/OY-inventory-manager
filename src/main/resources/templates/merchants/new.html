@@ -44,6 +44,14 @@
 
 
                 <div class="form-group">
+                    <label for="address">Address</label>
+                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                          class="alert alert-danger"></span>
+                    <input id="address" name="address" type="text" class="form-control" aria-describedby="addressHelp" placeholder="address,city,state, zip code" th:value="${merchant.address}">
+                </div>
+
+
+                <div class="form-group">
                     <label for="mobile">Phone Number</label>
                     <span th:if="${#fields.hasErrors('user.mobile')}" th:errors="*{user.mobile}"
                           class="alert alert-danger"></span>

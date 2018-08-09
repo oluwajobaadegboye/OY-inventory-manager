@@ -69,4 +69,15 @@ public class ProductController {
         productService.update(product);
         return "redirect:/products/index";
     }
+
+    @PostMapping(value = "/products/delete")
+    public String deleteProduct(@Valid @ModelAttribute("product") Product product,
+                                BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "products/edit";
+        }
+        productService.delete(product);
+        return "redirect:/products/index";
+    }
 }
