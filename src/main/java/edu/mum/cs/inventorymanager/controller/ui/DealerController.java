@@ -1,7 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
-import edu.mum.cs.inventorymanager.repository.IDealerRepository;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +14,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = {"/dealers"})
 public class DealerController {
 
     @Autowired
     private DealerService dealerService;
 
-    @GetMapping(value = {"/dealers", "/dealers/", "/dealers/index"})
+    @GetMapping(value = {"", "/", "/index"})
     public ModelAndView dealers() {
         ModelAndView modelAndView = new ModelAndView();
         List<Dealer> dealers = dealerService.findAll();
@@ -29,13 +29,13 @@ public class DealerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "dealers/new")
+    @GetMapping(value = "/new")
     public String createDealer(Model model) {
         model.addAttribute("dealer", new Dealer());
         return "dealers/new";
     }
 
-    @PostMapping(value = "/dealers/new")
+    @PostMapping(value = "/new")
     public String registerNewDealer(@Valid @ModelAttribute("dealer") Dealer dealer,
                                     BindingResult bindingResult, Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
@@ -46,7 +46,7 @@ public class DealerController {
         return "redirect:/dealers/";
     }
 
-    @GetMapping(value="/dealers/edit/{id}")
+    @GetMapping(value = "/edit/{id}")
     public String editMerchant(@PathVariable Long id, Model model) {
         Dealer dealer = dealerService.findOne(id);
         if (dealer != null) {
@@ -56,7 +56,7 @@ public class DealerController {
         return "dealers/index";
     }
 
-    @PostMapping(value = "/dealers/edit")
+    @PostMapping(value = "/edit")
     public String updateMerchant(@Valid @ModelAttribute("dealer") Dealer dealer,
                                  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
