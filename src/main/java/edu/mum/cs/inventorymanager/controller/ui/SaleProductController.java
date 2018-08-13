@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
-import edu.mum.cs.inventorymanager.model.Product;
+import edu.mum.cs.inventorymanager.model.entity.Product;
 import edu.mum.cs.inventorymanager.service.contract.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
