@@ -29,7 +29,7 @@ public class DealerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "dealers/new")
+    @GetMapping(value = "/dealers/new")
     public String createDealer(Model model) {
         model.addAttribute("dealer", new Dealer());
         return "dealers/new";

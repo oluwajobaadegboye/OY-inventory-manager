@@ -31,11 +31,12 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping(value = "products/new")
+    @GetMapping(value = "/products/new" )
     public String createProduct(Model model) {
         model.addAttribute("product", new Product());
         return "products/new";
     }
+
 
     @PostMapping(value = "/products/new")
     public String registerNewProduct(@Valid @ModelAttribute("product") Product product,
