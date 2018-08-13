@@ -4,7 +4,7 @@
       layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Inventory Management System - Browse List of Products</title>
+    <title>Browse List of Products</title>
 </head>
 <body>
 <th:block layout:fragment="content">
@@ -12,7 +12,7 @@
         <span style="font-size: 1.5em">List of Products</span>
         <span style="float:right;">
                 <a class="btn btn-outline-success btn-lg"
-                   href="/inventory-manager/products/new">Create New Product</a>
+                   href="/products/product">Create New Product</a>
             </span>
     </div>
     <p>&nbsp;</p>
@@ -20,20 +20,19 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Product Number</th>
             <th scope="col">Name</th>
-            <th scope="col">Cost Price</th>
-            <th scope="col">Selling Price</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <!--<th scope="col">Date Manufactured</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product, iterStat : ${products}"
-            th:onclick="@{document.location='/inventory-manager/products/edit/{id}'(id=${product.id})}">
+        <tr th:each="product, iterStat : ${products}">
             <th scope="row" th:text="${iterStat.count}"></th>
+            <td th:text="${product.productNumber}"></td>
             <td th:text="${product.name}"></td>
-            <td th:text="${product.costPrice}"></td>
-            <td th:text="${product.sellingPrice}"></td>
-            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.price}"></td>
+            <!--<td th:text="${product.dateMfd}"></td>-->
         </tr>
         </tbody>
     </table>
