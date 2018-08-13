@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.dao;
 
 import edu.mum.cs.inventorymanager.model.entity.User;
+import edu.mum.cs.inventorymanager.model.security.AppUser;
 import edu.mum.cs.inventorymanager.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,7 @@ public class UserDao {
     }
 
     public User findByUserName(String userName) {
-        return userRepository.findByUsername(userName);
+        return userRepository.findByAppUser_UserName(userName);
     }
 
 
@@ -62,6 +63,6 @@ public class UserDao {
     }
 
     public User findByUserNameAndPassword(String userName, String password) {
-        return userRepository.findByUsernameAndPassword(userName,password);
+        return userRepository.findByAppUser_UserNameAndAndAppUser_EncrytedPassword(userName,password);
     }
 }

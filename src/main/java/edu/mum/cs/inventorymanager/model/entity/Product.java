@@ -1,13 +1,7 @@
-package edu.mum.cs.inventorymanager.model;
+package edu.mum.cs.inventorymanager.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.*;
 
 @Entity
 @Table(name = "tbl_product")
@@ -21,6 +15,21 @@ public class Product {
     private double sellingPrice;
     private int quantity;
     private String status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "merchantId")
+    private Merchant merchant;
+
+    public Product() {
+    }
+
+    public Product(String name, double costPrice, double sellingPrice, int quantity, String status, Merchant merchant) {
+        this.name = name;
+        this.costPrice = costPrice;
+        this.sellingPrice = sellingPrice;
+        this.quantity = quantity;
+        this.status = status;
+        this.merchant = merchant;
+    }
 
     public long getId() {
         return id;
@@ -68,5 +77,26 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", costPrice=" + costPrice +
+                ", sellingPrice=" + sellingPrice +
+                ", quantity=" + quantity +
+                ", status='" + status + '\'' +
+                ", merchant=" + merchant +
+                '}';
     }
 }

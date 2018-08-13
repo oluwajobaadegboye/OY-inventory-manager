@@ -13,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -44,8 +47,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model) {
+    public String logoutSuccessfulPage(Model model, HttpServletRequest request) {
         model.addAttribute("title", "Logout");
+        request.getSession().invalidate();
         return "logoutSuccessfulPage";
     }
 

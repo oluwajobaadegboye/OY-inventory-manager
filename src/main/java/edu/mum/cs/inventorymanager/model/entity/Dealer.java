@@ -10,9 +10,6 @@ public class Dealer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long dealerId;
-    private String dealerBusinessAddress;
-    private long merchantId;
-    private String merchantName;
     @NotEmpty(message = "*First Name is required")
     private String firstName;
     @NotEmpty(message = "*Last Name is required")
@@ -21,38 +18,14 @@ public class Dealer {
     private String mobile;
     @NotEmpty(message = "*Email is required")
     private String email;
+    @NotEmpty(message = "*Contact Address is required")
     private String contactAddress;
+    @ManyToOne
+    @JoinColumn(name = "merchantId")
+    private Merchant merchant;
 
     public long getDealerId() {
         return dealerId;
-    }
-
-    public void setDealerId(int dealerId) {
-        this.dealerId = dealerId;
-    }
-
-    public String getDealerBusinessAddress() {
-        return dealerBusinessAddress;
-    }
-
-    public void setDealerBusinessAddress(String dealerBusinessAddress) {
-        this.dealerBusinessAddress = dealerBusinessAddress;
-    }
-
-    public long getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public String getMerchantName() {
-        return merchantName;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
     }
 
     public String getFirstName() {
@@ -94,4 +67,19 @@ public class Dealer {
     public void setContactAddress(String contactAddress) {
         this.contactAddress = contactAddress;
     }
+
+    public void setDealerId(long dealerId) {
+        this.dealerId = dealerId;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
+    }
+
+
+
 }

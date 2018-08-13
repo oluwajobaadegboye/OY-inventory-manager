@@ -1,9 +1,14 @@
 package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.dao.MerchantDao;
+import edu.mum.cs.inventorymanager.model.RoleType;
 import edu.mum.cs.inventorymanager.model.entity.Location;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.entity.User;
+import edu.mum.cs.inventorymanager.model.security.AppRole;
+import edu.mum.cs.inventorymanager.model.security.UserRole;
+import edu.mum.cs.inventorymanager.repository.IRoleRepository;
+import edu.mum.cs.inventorymanager.repository.IUserRoleRepository;
 import edu.mum.cs.inventorymanager.service.contract.LocationService;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import edu.mum.cs.inventorymanager.service.contract.UserService;
@@ -16,6 +21,8 @@ public class MerchantServiceImpl implements MerchantService {
     private final MerchantDao merchantDao;
     private final UserService userService;
     private final LocationService locationService;
+    private IRoleRepository roleRepository;
+    private IUserRoleRepository userRoleRepository;
     @Autowired
     public MerchantServiceImpl(MerchantDao merchantDao,UserService userService,LocationService locationService){
         this.merchantDao = merchantDao;
@@ -25,9 +32,11 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public Merchant create(Merchant merchant) {
-        userService.create(merchant.getUser());
-//        locationService.create(new Location(merchant.getUser().getUsername(),merchant.getAddress()));
-        return merchantDao.createMerchant(merchant);
+        Merchant newMerchant = merchantDao.createMerchant(merchant);
+        AppRole role = roleRepository.findAppRoleByRoleName(RoleType.ROLE_MERCHANT.getRoleCode());
+        UserRole userRole = new UserRole(newMerchant.getUser().getAppUser(),role);
+        userRoleRepository.save(userRole);
+        return newMerchant;
     }
 
     @Override

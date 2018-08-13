@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
-import edu.mum.cs.inventorymanager.model.Product;
+import edu.mum.cs.inventorymanager.model.entity.Product;
 import edu.mum.cs.inventorymanager.service.contract.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "products/new")
-    public String createProduct(Model model) {
+    public String createProduct(Model model, Principal principal) {
         model.addAttribute("product", new Product());
         return "products/new";
     }

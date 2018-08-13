@@ -1,5 +1,8 @@
 package edu.mum.cs.inventorymanager.model.entity;
 
+import edu.mum.cs.inventorymanager.model.security.AppUser;
+import edu.mum.cs.inventorymanager.utils.EncrytedPasswordUtils;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -8,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private long userId;
     @NotEmpty(message = "*First Name is required")
     private String firstName;
     @NotEmpty(message = "*Last Name is required")
@@ -17,11 +20,14 @@ public class User {
     private String mobile;
     @NotEmpty(message = "*Email is required")
     private String email;
-    @NotEmpty(message = "*Username is required")
-    private String username;
-    @NotEmpty(message = "*Password is required")
-    private String password;
+//    @NotEmpty(message = "*Username is required")
+//    private String username;
+//    @NotEmpty(message = "*Password is required")
+//    private String password;
     private String userType;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private AppUser appUser;
+
 
     public User(){}
 
@@ -30,16 +36,24 @@ public class User {
         this.lastName = lastName;
         this.mobile = mobile;
         this.email = email;
-        this.username = userName;
-        this.password = password;
+        this.appUser.setUserName(userName);
+        this.appUser.setEncrytedPassword(EncrytedPasswordUtils.encrytePassword(password));
         this.userType = userType;
     }
 
-    public int getUserId() {
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -73,22 +87,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUserType() {
