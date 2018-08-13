@@ -1,36 +1,39 @@
 package edu.mum.cs.inventorymanager.model.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
+import javax.persistence.*;
+import java.util.List;
 
-public class Terminal implements Serializable {
+@Entity
+@Table(name = "tbl_terminal")
+public class Terminal{
 
-
-    private int terminalId;
-    private int locationId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long terminalId;
     private String terminalName;
-    private String merchant;
-    private String locationName;
-    private int stationStatus;
-    private String deviceNr;
-    private String masterKey;
-    private String sessionKey;
+    private String stationStatus="Active";
+    @ManyToOne
+    @JoinColumn(name = "locationId")
+    private Location location;
+    @OneToMany(mappedBy = "terminal", cascade = CascadeType.PERSIST)
+    private List<Order> orders;
 
-    public int getTerminalId() {
+    public Terminal() {
+    }
+
+    public Terminal(String terminalName, String stationStatus, Location location, List<Order> orders) {
+        this.terminalName = terminalName;
+        this.stationStatus = stationStatus;
+        this.location = location;
+        this.orders = orders;
+    }
+
+    public long getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(int terminalId) {
+    public void setTerminalId(long terminalId) {
         this.terminalId = terminalId;
-    }
-
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
     }
 
     public String getTerminalName() {
@@ -41,51 +44,27 @@ public class Terminal implements Serializable {
         this.terminalName = terminalName;
     }
 
-    public String getMerchant() {
-        return merchant;
-    }
-
-    public void setMerchant(String merchant) {
-        this.merchant = merchant;
-    }
-
-    public String getLocationName() {
-        return locationName;
-    }
-
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
-
-    public int getStationStatus() {
+    public String getStationStatus() {
         return stationStatus;
     }
 
-    public void setStationStatus(int stationStatus) {
+    public void setStationStatus(String stationStatus) {
         this.stationStatus = stationStatus;
     }
 
-    public String getDeviceNr() {
-        return deviceNr;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setDeviceNr(String deviceNr) {
-        this.deviceNr = deviceNr;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public String getMasterKey() {
-        return masterKey;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setMasterKey(String masterKey) {
-        this.masterKey = masterKey;
-    }
-
-    public String getSessionKey() {
-        return sessionKey;
-    }
-
-    public void setSessionKey(String sessionKey) {
-        this.sessionKey = sessionKey;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

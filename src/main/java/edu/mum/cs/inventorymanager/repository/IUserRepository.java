@@ -2,6 +2,7 @@ package edu.mum.cs.inventorymanager.repository;
 
 
 import edu.mum.cs.inventorymanager.model.entity.User;
+import edu.mum.cs.inventorymanager.model.security.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
 
-    User findByUsername(String userName);
+    User findByAppUser_UserName(String username);
 
     User findByFirstName(String firstName);
 
@@ -20,5 +21,5 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     User findByMobile(String mobile);
 
-    User findByUsernameAndPassword(String username, String password);
+    User findByAppUser_UserNameAndAndAppUser_EncrytedPassword(String username, String encryptedPassword);
 }

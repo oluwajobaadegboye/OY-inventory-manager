@@ -2,6 +2,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
+import edu.mum.cs.inventorymanager.utils.EncrytedPasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,8 +43,11 @@ public class MerchantController {
 									  BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
+			model.addAttribute("merchant",merchant);
 			return "merchants/new";
 		}
+		String encryptedPassword = EncrytedPasswordUtils.encrytePassword(merchant.getUser().getAppUser().getEncrytedPassword());
+		merchant.getUser().getAppUser().setEncrytedPassword(encryptedPassword);
 		merchant = merchantService.create(merchant);
 		return "redirect:/login";
 	}
@@ -63,6 +67,7 @@ public class MerchantController {
                                 BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
+			model.addAttribute("merchant", merchant);
 			return "merchants/edit";
 		}
 		merchant = merchantService.update(merchant);
