@@ -21,7 +21,9 @@ public class MerchantServiceImpl implements MerchantService {
     private final MerchantDao merchantDao;
     private final UserService userService;
     private final LocationService locationService;
+    @Autowired
     private IRoleRepository roleRepository;
+    @Autowired
     private IUserRoleRepository userRoleRepository;
     @Autowired
     public MerchantServiceImpl(MerchantDao merchantDao,UserService userService,LocationService locationService){
