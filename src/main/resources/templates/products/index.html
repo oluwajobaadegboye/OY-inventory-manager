@@ -12,27 +12,27 @@
         <span style="font-size: 1.5em">List of Products</span>
         <span style="float:right;">
                 <a class="btn btn-outline-success btn-lg"
-                   href="/products/product">Create New Product</a>
-            </span>
+                   href="/inventory-manager/products/new">Create New Product</a>
+        </span>
     </div>
     <p>&nbsp;</p>
     <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Product Number</th>
             <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <!--<th scope="col">Date Manufactured</th>-->
+            <th scope="col">Cost Price</th>
+            <th scope="col">Selling Price</th>
+            <th scope="col">Quantity</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product, iterStat : ${products}">
             <th scope="row" th:text="${iterStat.count}"></th>
-            <td th:text="${product.productNumber}"></td>
             <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <!--<td th:text="${product.dateMfd}"></td>-->
+            <td th:text="${product.costPrice}"></td>
+            <td th:text="${product.sellingPrice}"></td>
+            <td th:text="${product.quantity}"></td>
         </tr>
         </tbody>
     </table>
