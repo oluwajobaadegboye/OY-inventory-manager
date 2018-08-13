@@ -37,9 +37,11 @@
 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <span th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}"
+                    <span th:if="${#fields.hasErrors('user.appUser.userName')}" th:errors="*{user.appUser.userName}"
                           class="alert alert-danger"></span>
-                    <input id="username" name="user.username" type="text" class="form-control" aria-describedby="usernameAddressHelp" placeholder="name to login with" th:value="${merchant.user.username}">
+                    <input id="username" name="user.appUser.userName" type="text" class="form-control"
+                           aria-describedby="usernameAddressHelp" placeholder="name to login with"
+                           th:value="${merchant.user.appUser.userName}">
                 </div>
 
 
@@ -60,9 +62,10 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <span th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"
+                    <span th:if="${#fields.hasErrors('user.appUser.encrytedPassword')}" th:errors="*{user.appUser.encrytedPassword}"
                           class="alert alert-danger"></span>
-                    <input id="password" name="user.password" type="password" class="form-control" th:value="${merchant.user.password}">
+                    <input id="password" name="user.appUser.encrytedPassword" type="password" class="form-control"
+                           th:value="${merchant.user.appUser.encrytedPassword}">
                 </div>
 
                 <div class="form-group">

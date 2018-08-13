@@ -1,17 +1,18 @@
 package edu.mum.cs.inventorymanager.model.security;
 
-import javax.persistence.*;
+import edu.mum.cs.inventorymanager.model.entity.User;
 
+import javax.persistence.*;
 @Entity
-@Table(name = "App_User", //
-        uniqueConstraints = { //
-                @UniqueConstraint(name = "APP_USER_UK", columnNames = "User_Name") })
+@Table(name = "App_User",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "APP_USER_UK", columnNames = "User_Name")})
 public class AppUser {
 
     @Id
     @GeneratedValue
     @Column(name = "User_Id", nullable = false)
-    private Long userId;
+    private long userId;
 
     @Column(name = "User_Name", length = 36, nullable = false)
     private String userName;
@@ -20,13 +21,27 @@ public class AppUser {
     private String encrytedPassword;
 
     @Column(name = "Enabled", length = 1, nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 
-    public Long getUserId() {
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+    public AppUser() {
+    }
+
+    public AppUser(String userName, String encrytedPassword, boolean enabled, User user) {
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.enabled = enabled;
+        this.user = user;
+    }
+
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -54,4 +69,11 @@ public class AppUser {
         this.enabled = enabled;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

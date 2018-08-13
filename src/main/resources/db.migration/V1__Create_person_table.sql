@@ -76,13 +76,16 @@ insert into app_role (ROLE_ID, ROLE_NAME)
 values (1, 'ROLE_ADMIN');
  
 insert into app_role (ROLE_ID, ROLE_NAME)
-values (2, 'ROLE_USER');
+values (2, 'ROLE_SALESPERSON');
+
+insert into app_role (ROLE_ID, ROLE_NAME)
+values (3, 'ROLE_MERCHANT');
  
 ---
  
 insert into user_role (ID, USER_ID, ROLE_ID)
 values (1, 1, 1);
- 
+
 insert into user_role (ID, USER_ID, ROLE_ID)
 values (2, 1, 2);
  

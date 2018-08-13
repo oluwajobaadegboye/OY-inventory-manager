@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
-import edu.mum.cs.inventorymanager.model.Salesman;
+import edu.mum.cs.inventorymanager.model.entity.Salesperson;
 import edu.mum.cs.inventorymanager.service.contract.SalespersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class SalespersonController {
     @GetMapping(value={"/salespersons", "/salespersons/", "/salespersons/index"})
     public ModelAndView salespersons() {
         ModelAndView mav = new ModelAndView();
-        List<Salesman> salespersons = salespersonService.findAll();
+        List<Salesperson> salespersons = salespersonService.findAll();
         mav.addObject("salespersons", salespersons);
         mav.setViewName("salespersons/index");
         return mav;
@@ -30,12 +30,12 @@ public class SalespersonController {
 
     @GetMapping(value="/salespersons/new")
     public String createSalespersonForm(Model model){
-        model.addAttribute("salesperson", new Salesman());
+        model.addAttribute("salesperson", new Salesperson());
         return "salespersons/new";
     }
 
     @PostMapping(value = "/salespersons/new")
-    public String registerNewSalesperson(@Valid @ModelAttribute("salesperson") Salesman salesperson,
+    public String registerNewSalesperson(@Valid @ModelAttribute("salesperson") Salesperson salesperson,
                                       BindingResult bindingResult, Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
@@ -47,7 +47,7 @@ public class SalespersonController {
 
 //    @GetMapping(value="/salespersons/edit/{id}")
 //    public String editSalesperson(@PathVariable Long id, Model model){
-//        Salesman s = salespersonService.findById(id);
+//        Salesperson s = salespersonService.findById(id);
 //        if (s != null) {
 //            model.addAttribute("salesperson", s);
 //            return "salespersons/edit";
@@ -56,7 +56,7 @@ public class SalespersonController {
 //    }
 //
 //    @PostMapping(value = "/salespersons/edit")
-//    public String updateSalesperson(@Valid @ModelAttribute("salesman") Salesman salesperson,
+//    public String updateSalesperson(@Valid @ModelAttribute("salesman") Salesperson salesperson,
 //                                 BindingResult bindingResult, Model model) {
 //        if (bindingResult.hasErrors()) {
 //            model.addAttribute("errors", bindingResult.getAllErrors());

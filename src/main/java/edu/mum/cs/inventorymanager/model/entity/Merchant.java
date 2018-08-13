@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -22,15 +23,24 @@ public class Merchant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int merchantId;
+    private long merchantId;
     @NotEmpty(message = "*Merchant Name is required")
     private String merchantName;
     private String merchantStatus="Active";
-    //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "locationId")
-//    private List<Location> locations;
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Location> locations;
+
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Dealer> dealers;
+
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Product> products;
+
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Salesperson> salespersonList;
+
     private String merchantImageUrl;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "userId")
     @NotNull
     private User user;
@@ -48,19 +58,43 @@ public class Merchant {
         this.address = address;
     }
 
-    public Merchant(String merchantName, String merchantStatus,User user,List<Location> locations,String address) {
-        this.merchantName = merchantName;
-        this.merchantStatus = merchantStatus;
-        this.user = user;
-//        this.locations = locations;
-        this.address = address;
+    public List<Location> getLocations() {
+        return locations;
     }
 
-    public int getMerchantId() {
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
+
+    public List<Dealer> getDealers() {
+        return dealers;
+    }
+
+    public void setDealers(List<Dealer> dealers) {
+        this.dealers = dealers;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Salesperson> getSalespersonList() {
+        return salespersonList;
+    }
+
+    public void setSalespersonList(List<Salesperson> salespersonList) {
+        this.salespersonList = salespersonList;
+    }
+
+    public long getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(long merchantId) {
         this.merchantId = merchantId;
     }
 

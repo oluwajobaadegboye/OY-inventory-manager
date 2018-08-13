@@ -1,6 +1,6 @@
 package edu.mum.cs.inventorymanager.service.contract;
 
-import edu.mum.cs.inventorymanager.model.Salesman;
+import edu.mum.cs.inventorymanager.model.entity.Salesperson;
 
-public interface SalespersonService extends AbstractService<Salesman> {
+public interface SalespersonService extends AbstractService<Salesperson> {
 }

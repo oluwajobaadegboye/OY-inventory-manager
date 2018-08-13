@@ -11,7 +11,7 @@ public class UserRole {
     @Id
     @GeneratedValue
     @Column(name = "Id", nullable = false)
-    private Long id;
+    private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "User_Id", nullable = false)
@@ -21,11 +21,19 @@ public class UserRole {
     @JoinColumn(name = "Role_Id", nullable = false)
     private AppRole appRole;
 
-    public Long getId() {
+    public UserRole() {
+    }
+
+    public UserRole(AppUser appUser, AppRole appRole) {
+        this.appUser = appUser;
+        this.appRole = appRole;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

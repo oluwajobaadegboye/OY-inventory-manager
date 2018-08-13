@@ -1,8 +1,8 @@
 package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.dao.securityDao.AppRoleDAO;
-import edu.mum.cs.inventorymanager.dao.securityDao.AppUserDAO;
 import edu.mum.cs.inventorymanager.model.security.AppUser;
+import edu.mum.cs.inventorymanager.repository.IAppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,14 +18,14 @@ import java.util.List;
 public class AuthenticationService implements UserDetailsService {
 
     @Autowired
-    private AppUserDAO appUserDAO;
+    private AppRoleDAO appRoleDAO;
 
     @Autowired
-    private AppRoleDAO appRoleDAO;
+    private IAppUserRepository appUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        AppUser appUser = this.appUserDAO.findUserAccount(userName);
+        AppUser appUser = appUserRepository.findAppUserByUserName(userName);
 
         if (appUser == null) {
             System.out.println("User not found! " + userName);
