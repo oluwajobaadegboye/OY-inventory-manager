@@ -35,7 +35,7 @@ public class AuthenticationService implements UserDetailsService {
         System.out.println("Found User: " + appUser);
 
         // [ROLE_USER, ROLE_ADMIN,..]
-        List<String> roleNames = this.appRoleDAO.getRoleNames(appUser.getUserId());
+        List<String> roleNames = this.appRoleDAO.getRoleNames(appUser.getId());
 
         List<GrantedAuthority> grantList = new ArrayList();
         if (roleNames != null) {
