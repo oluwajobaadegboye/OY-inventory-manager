@@ -23,7 +23,8 @@ public class DashboardController {
         ModelAndView modelAndView = new ModelAndView();
         Merchant merchant = merchantService.findMerchantByUsername(principal == null ? "" : principal.getName());
         session.setAttribute("merchantInfo", merchant);
-        modelAndView.setViewName("common/usermasterlayout"); //merchants/dashboard
+//        modelAndView.setViewName("common/usermasterlayout"); //merchants/dashboard
+        modelAndView.setViewName("users/merchant/dashboard");
         modelAndView.addObject(new Merchant());
         return modelAndView;
     }
