@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,11 +39,13 @@ public class DealerController {
 
     @PostMapping(value = "/new")
     public String registerNewDealer(@Valid @ModelAttribute("dealer") Dealer dealer,
-                                    BindingResult bindingResult, Model model, HttpServletRequest request) {
+                                    BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "dealer/new";
         }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        dealer.setMerchant(merchant);
         dealerService.save(dealer);
         return "redirect:/dealers/";
     }
