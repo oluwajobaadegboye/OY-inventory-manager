@@ -17,12 +17,12 @@ public class AppRoleDAO {
     @Autowired
     private EntityManager entityManager;
 
-    public List getRoleNames(Long userId) {
-        String sql = "Select ur.appRole.roleName from " + UserRole.class.getName() + " ur " //
-                + " where ur.appUser.userId = :userId ";
+    public List getRoleNames(Long id) {
+        String sql = "Select ur.appRole.roleName from " + UserRole.class.getName() + " ur "
+                + " where ur.appUser.id = :id ";
 
         Query query = this.entityManager.createQuery(sql, String.class);
-        query.setParameter("userId", userId);
+        query.setParameter("id", id);
         return query.getResultList();
     }
 

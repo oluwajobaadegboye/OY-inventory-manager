@@ -20,22 +20,25 @@ public class User {
     private String mobile;
     @NotEmpty(message = "*Email is required")
     private String email;
-//    @NotEmpty(message = "*Username is required")
-//    private String username;
-//    @NotEmpty(message = "*Password is required")
-//    private String password;
     private String userType;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST, optional = false)
     private AppUser appUser;
+    @OneToOne
+    @JoinColumn(name = "merchantId")
+    private Merchant merchant;
 
 
-    public User(){}
+    public User() {
+    }
 
     public User(@NotEmpty(message = "*First Name is required") String firstName, @NotEmpty(message = "*Last Name is required") String lastName, @NotEmpty(message = "*Mobile is required") String mobile, @NotEmpty(message = "*Email is required") String email, @NotEmpty(message = "*UserName is required") String userName, @NotEmpty(message = "*Password is required") String password, String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobile = mobile;
         this.email = email;
+        if (appUser == null) {
+            appUser = new AppUser();
+        }
         this.appUser.setUserName(userName);
         this.appUser.setEncrytedPassword(EncrytedPasswordUtils.encrytePassword(password));
         this.userType = userType;
@@ -95,5 +98,13 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

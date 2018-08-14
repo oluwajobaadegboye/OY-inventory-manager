@@ -9,4 +9,5 @@ public interface MerchantService  extends AbstractService<Merchant>{
     public Merchant findByUsername(String userName);
     public Merchant findByMerchantName(String merchantName);
     public Merchant findUser(User user);
+    public Merchant findMerchantByUsername(String s);
 }
