@@ -15,7 +15,7 @@
                 <legend>Create Salesperson</legend>
                 <!---->
                 <input type="hidden" name="salesmanId" th:value="${salesperson.salesmanId}"/>
-                <input type="hidden" name="user.userType" th:value="MERCHANT"/>
+                <input type="hidden" name="user.userType" th:value="SALESPERON"/>
                 <!---->
                 <div class="form-group">
                     <label>Staff No</label>
@@ -40,6 +40,17 @@
                     <input id="lastName" name="user.lastName" type="text" class="form-control"
                            th:value="${salesperson.user.lastName}">
                 </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <select class="form-control" id="locationId" name="location">
+                        <option value="">Select Location</option>
+                        <option th:each="location : ${locations}"
+                                th:value="${location.locationId}"
+                                th:text="${location.locationName}"></option>
+                    </select>
+                </div>
+
                 <!---->
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -67,7 +78,7 @@
                     <label for="username">Username</label>
                     <span th:if="${#fields.hasErrors('user.appUser.userName')}" th:errors="*{user.appUser.userName}"
                           class="alert alert-danger"></span>
-                    <input id="username" name="user.appUser.username" type="text" class="form-control"
+                    <input id="username" name="user.appUser.userName" type="text" class="form-control"
                            aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com"
                            th:value="${salesperson.user.appUser.userName}">
                 </div>

@@ -25,7 +25,7 @@ public class MerchantController {
 	private MerchantService merchantService;
 
 	@RequestMapping(value={"/","/index","/browse"}, method=RequestMethod.GET)
-	public ModelAndView merchants() {
+	public ModelAndView displayMerchants() {
 		ModelAndView mav = new ModelAndView();
 		List<Merchant> merchants = merchantService.findAll();
 		mav.addObject("merchants", merchants);

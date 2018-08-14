@@ -66,6 +66,7 @@ public class DealerController {
                                  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
+            model.addAttribute("dealer", dealer);
             return "dealers/edit";
         }
         dealerService.save(dealer);

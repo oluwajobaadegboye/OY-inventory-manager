@@ -29,6 +29,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public List<Location> findMerchantLocations(Merchant merchant) {
+        return locationDao.findMerchantLocations(merchant);
+    }
+
+    @Override
     public Location create(Location location) {
         return locationDao.createLocation(location);
     }
