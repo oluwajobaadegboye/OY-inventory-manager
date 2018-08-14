@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      lang="en"
-      layout:decorate="~{common/masterlayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/usermasterlayout}">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Inventory Management System - Browse List of Dealers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Management System - Browse List of Products</title>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <div>
-        <span style="font-size: 1.5em">List of Dealers</span>
-        <span style="float:right;">
-                <a class="btn btn-outline-success btn-lg" href="/inventory-manager/dealers/new">Create New Dealer</a>
-            </span>
-    </div>
-    <p>&nbsp;</p>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Email</th>
-            <th scope="col">Contact Address</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="dealer, iterStat : ${dealers}"
-            th:onclick="@{document.location='/inventory-manager/dealers/edit/{id}'(id=${dealer.dealerId})}">
-            <th scope="row" th:text="${iterStat.count}"></th>
-            <td th:text="${dealer.firstName}"></td>
-            <td th:text="${dealer.lastName}"></td>
-            <td th:text="${dealer.mobile}"></td>
-            <td th:text="${dealer.email}"></td>
-            <td th:text="${dealer.contactAddress}"></td>
-        </tr>
-        </tbody>
-    </table>
+    this is dealer list
+    <!--<div>-->
+        <!--<span style="font-size: 1.5em">List of Dealers</span>-->
+        <!--<span style="float:right;">-->
+                <!--<a class="btn btn-outline-success btn-lg" href="/inventory-manager/dealers/new">Create New Dealer</a>-->
+            <!--</span>-->
+    <!--</div>-->
+    <!--<p>&nbsp;</p>-->
+    <!--<table class="table table-hover">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th scope="col">#</th>-->
+            <!--<th scope="col">First Name</th>-->
+            <!--<th scope="col">Last Name</th>-->
+            <!--<th scope="col">Phone Number</th>-->
+            <!--<th scope="col">Email</th>-->
+            <!--<th scope="col">Contact Address</th>-->
+            <!--&lt;!&ndash;<th scope="col">Business Name</th>&ndash;&gt;-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr th:each="dealer,iterStat : ${dealers}" th:onclick="@{document.location='/inventory-manager/dealers/edit/{id}'(id=${dealer.dealerId})}">-->
+            <!--<th scope="row" th:text="${iterStat.count}"></th>-->
+            <!--<td th:text="${dealer.firstName}"></td>-->
+            <!--<td th:text="${dealer.lastName}"></td>-->
+            <!--<td th:text="${dealer.mobile}"></td>-->
+            <!--<td th:text="${dealer.email}"></td>-->
+            <!--<td th:text="${dealer.contactAddress}"></td>-->
+            <!--&lt;!&ndash;<td th:text="${dealer.businessName}"></td>&ndash;&gt;-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
 </th:block>
 
-<th:block layout:fragment="footer"></th:block>
+<!--<th:block layout:fragment="footer"></th:block>-->
 
 </body>
 </html>
