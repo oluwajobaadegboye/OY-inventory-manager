@@ -21,11 +21,10 @@ public class DashboardController {
     @RequestMapping(value = {"/dashbaord"}, method = RequestMethod.GET)
     public ModelAndView loginForm(Model model, HttpSession session, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        if (principal != null) {
-            Merchant merchant = merchantService.findMerchantByUsername(principal == null ? "" : principal.getName());
-            session.setAttribute("merchantInfo", merchant);
-        }
-        modelAndView.setViewName("common/usermasterlayout"); //merchants/dashboard
+        Merchant merchant = merchantService.findMerchantByUsername(principal == null ? "" : principal.getName());
+        session.setAttribute("merchantInfo", merchant);
+//        modelAndView.setViewName("common/usermasterlayout"); //merchants/dashboard
+        modelAndView.setViewName("users/merchant/dashboard");
         modelAndView.addObject(new Merchant());
         return modelAndView;
     }
