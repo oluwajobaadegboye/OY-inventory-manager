@@ -18,12 +18,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/merchants")
 public class MerchantController {
 
 	@Autowired
 	private MerchantService merchantService;
 
-	@RequestMapping(value={"/merchants/","/merchants/index","/merchants/browse"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/","/index","/browse"}, method=RequestMethod.GET)
 	public ModelAndView merchants() {
 		ModelAndView mav = new ModelAndView();
 		List<Merchant> merchants = merchantService.findAll();
@@ -32,13 +33,13 @@ public class MerchantController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/merchants/new", method = RequestMethod.GET)
+	@RequestMapping(value="/new", method = RequestMethod.GET)
 	public String createMerchantForm(Model model){
 		model.addAttribute("merchant", new Merchant());
 		return "merchants/new";
 	}
 	
-	@RequestMapping(value = "/merchants/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String registerNewMerchant(@Valid @ModelAttribute("merchant") Merchant merchant,
 									  BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
@@ -52,7 +53,7 @@ public class MerchantController {
 		return "redirect:/login";
 	}
 	
-	@RequestMapping(value="/merchants/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
 	public String editMerchant(@PathVariable Long id, Model model){
 		Merchant s = merchantService.findById(id);
 		if (s != null) {
@@ -62,7 +63,7 @@ public class MerchantController {
 		return "merchants/dashboard";
 	}
 	
-	@RequestMapping(value = "/merchants/edit", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String updateMerchant(@Valid @ModelAttribute("merchant") Merchant merchant,
                                 BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
