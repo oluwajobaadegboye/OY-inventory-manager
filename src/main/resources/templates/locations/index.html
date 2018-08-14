@@ -4,18 +4,18 @@
       layout:decorate="~{common/usermasterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Browse List of Products</title>
+    <title>Browse List of Locations</title>
 </head>
 <body>
 <th:block layout:fragment="content">
     <div  style="position: absolute;left: 220px;right: 50px;top: 50px;">
         <div>
         <span style=" font-size: 1.5em
-    ">List of Products</span>
+    ">List of Locations</span>
             <span style="float:right;">
                 <!--<button type="button" class="btn btn-success">Success</button>-->
                 <a class="btn btn-primary"
-                   href="/inventory-manager/products/new">Create New Product</a>
+                   href="/inventory-manager/locations/new">Create New Location</a>
         </span>
         </div>
         <p>&nbsp;</p>
@@ -24,18 +24,16 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Cost Price</th>
-                <th scope="col">Selling Price</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">Address</th>
+                <th scope="col">Merchant</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product, iterStat : ${products}">
+            <tr th:each="location, iterStat : ${locations}"  th:onclick="@{document.location='/inventory-manager/locations/edit/{sId}'(sId=${location.locationId})}">
                 <th scope="row" th:text="${iterStat.count}"></th>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.costPrice}"></td>
-                <td th:text="${product.sellingPrice}"></td>
-                <td th:text="${product.quantity}"></td>
+                <td th:text="${location.locationName}"></td>
+                <td th:text="${location.address}"></td>
+                <td th:text="${location.merchant.merchantName}"></td>
             </tr>
             </tbody>
         </table>

@@ -3,6 +3,7 @@ package edu.mum.cs.inventorymanager.dao;
 import edu.mum.cs.inventorymanager.model.entity.Location;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.repository.ILocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Component
 public class LocationDao {
 
+    @Autowired
     ILocationRepository repository;
 
     public Location update(Location location) {
@@ -42,5 +44,9 @@ public class LocationDao {
 
     public Location createLocation(Location location) {
         return repository.save(location);
+    }
+
+    public List<Location> findMerchantLocations(Merchant merchant) {
+        return repository.findAllByMerchant(merchant);
     }
 }

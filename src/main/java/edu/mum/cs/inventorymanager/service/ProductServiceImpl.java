@@ -1,5 +1,6 @@
 package edu.mum.cs.inventorymanager.service;
 
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.entity.Product;
 import edu.mum.cs.inventorymanager.repository.IProductRepository;
 import edu.mum.cs.inventorymanager.service.contract.ProductService;
@@ -44,5 +45,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product update(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> findAllMerchantProducts(Merchant merchant) {
+        return productRepository.findAllByMerchant(merchant);
     }
 }

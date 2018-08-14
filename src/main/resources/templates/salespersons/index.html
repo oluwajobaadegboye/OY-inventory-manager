@@ -24,6 +24,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Mobile</th>
                 <th scope="col">Email</th>
+                <th scope="col">Location</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                 <td th:text="${salesperson.user.lastName}"></td>
                 <td th:text="${salesperson.user.mobile}"></td>
                 <td th:text="${salesperson.user.email}"></td>
+                <td th:text="${salesperson.location.locationName}"></td>
             </tr>
             </tbody>
         </table>

@@ -2,7 +2,7 @@ package edu.mum.cs.inventorymanager.model;
 
 public enum UserType {
     MERCHANT("MERCHANT","Merchant user type"),
-    SALESMAN("SALESMAN","Salesperson user type");
+    SALESPERON("SALESPERON","Salesperson user type");
 
     private String type;
     private String description;

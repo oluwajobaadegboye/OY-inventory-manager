@@ -13,7 +13,7 @@ public class Salesperson {
 	private long salesmanId;
 	@NotEmpty(message = "*staffId is required")
 	private String staffId;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "userId")
 	@NotNull
 	private User user;
