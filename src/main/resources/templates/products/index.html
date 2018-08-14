@@ -30,7 +30,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product, iterStat : ${products}">
+            <tr th:each="product, iterStat : ${products}"
+                th:onclick="@{document.location='/inventory-manager/products/edit/{sId}'(sId=${product.id})}">
                 <th scope="row" th:text="${iterStat.count}"></th>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.costPrice}"></td>
