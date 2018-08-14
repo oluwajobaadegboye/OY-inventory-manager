@@ -111,14 +111,6 @@ public class Merchant {
         this.merchantStatus = merchantStatus;
     }
 
-//    public List<Location> getLocations() {
-//        return locations;
-//    }
-//
-//    public void setLocations(List<Location> locations) {
-//        this.locations = locations;
-//    }
-
     public String getMerchantImageUrl() {
         return merchantImageUrl;
     }
