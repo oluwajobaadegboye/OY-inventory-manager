@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       lang="en"
-      layout:decorate="~{common/usermasterlayout}">
+      layout:decorate="~{common/masterlayout}">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
-    <title>Inventory Management System - Browse List of Products</title>
+    <title>Browse List of Products</title>
 </head>
 <body>
 <th:block layout:fragment="content">
-    this is index peoduct
     <div>
         <span style="font-size: 1.5em">List of Products</span>
         <span style="float:right;">
                 <a class="btn btn-outline-success btn-lg"
                    href="/inventory-manager/products/new">Create New Product</a>
-            </span>
+        </span>
     </div>
     <p>&nbsp;</p>
     <table class="table table-hover">
@@ -28,8 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product, iterStat : ${products}"
-            th:onclick="@{document.location='/inventory-manager/products/edit/{id}'(id=${product.id})}">
+        <tr th:each="product, iterStat : ${products}">
             <th scope="row" th:text="${iterStat.count}"></th>
             <td th:text="${product.name}"></td>
             <td th:text="${product.costPrice}"></td>
@@ -40,7 +38,7 @@
     </table>
 </th:block>
 
-<!--<th:block layout:fragment="footer"></th:block>-->
+<th:block layout:fragment="footer"></th:block>
 
 </body>
 </html>

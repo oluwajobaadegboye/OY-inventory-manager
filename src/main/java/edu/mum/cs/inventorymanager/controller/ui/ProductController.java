@@ -40,7 +40,7 @@ public class ProductController {
 
     @PostMapping(value = "/products/new")
     public String registerNewProduct(@Valid @ModelAttribute("product") Product product,
-                                     BindingResult bindingResult, Model model, HttpServletRequest request) {
+                                     BindingResult bindingResult, Model model, Principal principal) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "product/new";
