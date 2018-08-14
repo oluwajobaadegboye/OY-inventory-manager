@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr th:each="salesperson, iterStat : ${salespersons}"
-                th:onclick="@{document.location='/salespersons/edit/{id}'(id=${salesperson.salesmanId})}">
+                th:onclick="@{document.location='/inventory-manager/salespersons/edit/{id}'(id=${salesperson.salesmanId})}">
                 <th scope="row" th:text="${iterStat.count}"></th>
                 <td th:text="${salesperson.user.firstName}"></td>
                 <td th:text="${salesperson.user.lastName}"></td>
@@ -42,7 +42,7 @@
     </div>
 </th:block>
 
-<th:block layout:fragment="footer"></th:block>
+
 
 </body>
 </html>

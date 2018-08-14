@@ -26,7 +26,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="merchant, iterStat : ${merchants}" th:onclick="@{document.location='/inventory-manager/merchants/edit/{sId}'(sId=${merchant.merchantId})}">
+                <tr th:each="merchant, iterStat : ${merchants}"
+                    th:onclick="@{document.location='/inventory-manager/merchants/edit/{sId}'(sId=${merchant.merchantId})}">
                     <th scope="row" th:text="${iterStat.count}"></th>
                     <td th:text="${merchant.user.firstName}"></td>
                     <!--<td th:text="${student.middleName}"></td>-->

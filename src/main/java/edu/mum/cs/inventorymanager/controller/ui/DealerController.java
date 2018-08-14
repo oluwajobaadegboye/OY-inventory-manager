@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -63,11 +64,15 @@ public class DealerController {
 
     @PostMapping(value = "/edit")
     public String updateMerchant(@Valid @ModelAttribute("dealer") Dealer dealer,
-                                 BindingResult bindingResult, Model model) {
+                                 BindingResult bindingResult, Model model, Principal principal, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("dealer", dealer);
             return "dealers/edit";
+        }
+        if(principal!=null){
+            Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+            dealer.setMerchant(merchant);
         }
         dealerService.save(dealer);
         return "redirect:/dealers/index";

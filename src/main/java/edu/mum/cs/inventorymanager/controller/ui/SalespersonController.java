@@ -79,10 +79,13 @@ public class SalespersonController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public String editSalesperson(@PathVariable Long id, Model model) {
+    public String editSalesperson(@PathVariable Long id, Model model,HttpSession session) {
         Salesperson s = salespersonService.findById(id);
         if (s != null) {
             model.addAttribute("salesperson", s);
+            Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+            List<Location> locations = locationService.findMerchantLocations(merchant);
+            model.addAttribute("locations",locations);
             return "salespersons/edit";
         }
         return "salespersons/edit";
