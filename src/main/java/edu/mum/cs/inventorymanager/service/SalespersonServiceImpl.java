@@ -3,12 +3,14 @@ package edu.mum.cs.inventorymanager.service;
 import edu.mum.cs.inventorymanager.model.entity.Salesperson;
 import edu.mum.cs.inventorymanager.repository.ISalespersonRepository;
 import edu.mum.cs.inventorymanager.service.contract.SalespersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SalespersonServiceImpl implements SalespersonService {
+    @Autowired
     ISalespersonRepository repository;
     @Override
     public Salesperson create(Salesperson salesperson) {
