@@ -42,6 +42,7 @@ public class DealerController {
                                     BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
+            model.addAttribute("dealer", dealer);
             return "dealer/new";
         }
         Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
