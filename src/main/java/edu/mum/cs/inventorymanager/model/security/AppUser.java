@@ -11,8 +11,8 @@ public class AppUser {
 
     @Id
     @GeneratedValue
-    @Column(name = "User_Id", nullable = false)
-    private long userId;
+    @Column(name = "id", nullable = false)
+    private long id;
 
     @Column(name = "User_Name", length = 36, nullable = false)
     private String userName;
@@ -23,9 +23,10 @@ public class AppUser {
     @Column(name = "Enabled", length = 1, nullable = false)
     private boolean enabled = true;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
+
 
     public AppUser() {
     }
@@ -37,12 +38,12 @@ public class AppUser {
         this.user = user;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUserName() {

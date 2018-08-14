@@ -1,10 +1,8 @@
 package edu.mum.cs.inventorymanager.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,9 +38,8 @@ public class Merchant {
     private List<Salesperson> salespersonList;
 
     private String merchantImageUrl;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "userId")
-    @NotNull
+
+    @OneToOne(mappedBy = "merchant" , cascade = CascadeType.PERSIST, optional = false)
     private User user;
     @NotEmpty(message = "*address is required")
     private String address;

@@ -1,5 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.ui;
 
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.entity.Product;
 import edu.mum.cs.inventorymanager.service.contract.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
@@ -30,20 +34,21 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping(value = "/products/new" )
-    public String createProduct(Model model) {
+    @GetMapping(value = "products/new")
+    public String createProduct(Model model, Principal principal) {
         model.addAttribute("product", new Product());
         return "products/new";
     }
 
-
     @PostMapping(value = "/products/new")
-    public String registerNewProduct(@Valid @ModelAttribute("product") Product product,
-                                     BindingResult bindingResult, Model model, Principal principal) {
+    public String createNewProduct(@Valid @ModelAttribute("product") Product product,
+                                     BindingResult bindingResult, Model model, Principal principal, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "product/new";
         }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        product.setMerchant(merchant);
         productService.create(product);
 
         return "redirect:/products/";
@@ -61,11 +66,13 @@ public class ProductController {
 
     @PostMapping(value = "/products/edit")
     public String updateProduct(@Valid @ModelAttribute("product") Product product,
-                                BindingResult bindingResult, Model model) {
+                                BindingResult bindingResult, Model model,HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "products/edit";
         }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        product.setMerchant(merchant);
         productService.update(product);
         return "redirect:/products/index";
     }
