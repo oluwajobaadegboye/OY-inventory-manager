@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
@@ -40,14 +38,16 @@ public class DealerController {
 
     @PostMapping(value = "/new")
     public String registerNewDealer(@Valid @ModelAttribute("dealer") Dealer dealer,
-                                    BindingResult bindingResult, Model model, HttpSession session) {
+                                    BindingResult bindingResult, Model model, Principal principal, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("dealer", dealer);
             return "dealer/new";
         }
-        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
-        dealer.setMerchant(merchant);
+        if (principal != null) {
+            Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+            dealer.setMerchant(merchant);
+        }
         dealerService.save(dealer);
         return "redirect:/dealers/";
     }
