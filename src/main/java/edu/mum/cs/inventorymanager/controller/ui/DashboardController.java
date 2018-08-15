@@ -25,12 +25,12 @@ public class DashboardController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loginForm(Model model, HttpSession session, Principal principal) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
-        Merchant merchant = new Merchant();
         if (principal != null) {
             AppUser appUser = merchantService.findAppUserByUsername(principal == null ? "" : principal.getName());
-            merchant = merchantService.findMerchantByAppUser(appUser);
+            Merchant merchant = merchantService.findMerchantByAppUser(appUser);
             session.setAttribute("merchantInfo", merchant);
-            modelAndView.addObject(merchant);
+            session.setAttribute("loginUsername", merchant.getUser().getFirstName());
+            modelAndView.addObject("merchant",merchant);
             if (UserType.MERCHANT.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/merchant/dashboard");
             } else if (UserType.SALESPERON.getType().equals(appUser.getUser().getUserType())) {
@@ -43,6 +43,5 @@ public class DashboardController {
 
         return modelAndView;
     }
-
 
 }
