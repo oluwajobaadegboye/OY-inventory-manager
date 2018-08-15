@@ -39,7 +39,7 @@ public class Merchant {
 
     private String merchantImageUrl;
 
-    @OneToOne(mappedBy = "merchant" , cascade = CascadeType.PERSIST, optional = false)
+    @OneToOne(cascade = CascadeType.PERSIST)//(mappedBy = "merchant" , cascade = CascadeType.PERSIST, optional = false)
     private User user;
     @NotEmpty(message = "*address is required")
     private String address;

@@ -20,9 +20,23 @@ public class Dealer {
     private String email;
     @NotEmpty(message = "*Contact Address is required")
     private String contactAddress;
+    private String businessName;
     @ManyToOne
     @JoinColumn(name = "merchantId")
     private Merchant merchant;
+
+    public Dealer() {
+    }
+
+    public Dealer(@NotEmpty(message = "*First Name is required") String firstName, @NotEmpty(message = "*Last Name is required") String lastName, @NotEmpty(message = "*Mobile is required") String mobile, @NotEmpty(message = "*Email is required") String email, @NotEmpty(message = "*Contact Address is required") String contactAddress, String businessName, Merchant merchant) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobile = mobile;
+        this.email = email;
+        this.contactAddress = contactAddress;
+        this.businessName = businessName;
+        this.merchant = merchant;
+    }
 
     public long getDealerId() {
         return dealerId;
@@ -80,6 +94,11 @@ public class Dealer {
         this.merchant = merchant;
     }
 
+    public String getBusinessName() {
+        return businessName;
+    }
 
-
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 }

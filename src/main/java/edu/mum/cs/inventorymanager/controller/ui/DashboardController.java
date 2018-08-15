@@ -3,6 +3,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 import edu.mum.cs.inventorymanager.model.UserType;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.page.Login;
+import edu.mum.cs.inventorymanager.model.security.AppUser;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +27,13 @@ public class DashboardController {
         ModelAndView modelAndView = new ModelAndView();
         Merchant merchant = new Merchant();
         if (principal != null) {
-            merchant = merchantService.findMerchantByUsername(principal == null ? "" : principal.getName());
+            AppUser appUser = merchantService.findAppUserByUsername(principal == null ? "" : principal.getName());
+            merchant = merchantService.findMerchantByAppUser(appUser);
             session.setAttribute("merchantInfo", merchant);
             modelAndView.addObject(merchant);
-            if (UserType.MERCHANT.getType().equals(merchant.getUser().getUserType())) {
+            if (UserType.MERCHANT.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/merchant/dashboard");
-            } else if (UserType.SALESPERON.getType().equals(merchant.getUser().getUserType())) {
+            } else if (UserType.SALESPERON.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/saler/salerIndex");
             }
         }  else {

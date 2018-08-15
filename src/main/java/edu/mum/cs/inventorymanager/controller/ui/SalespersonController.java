@@ -99,7 +99,7 @@ public class SalespersonController {
             model.addAttribute("salesperson", salesperson);
             return "salespersons/edit";
         }
-        salesperson = salespersonService.update(salesperson);
-        return "redirect:/salespersons/edit";
+        salespersonService.update(salesperson);
+        return "redirect:/salespersons";
     }
 }

@@ -16,7 +16,7 @@ public class MerchantDao {
         return merchantRepository.save(merchant);
     }
     public Merchant findByMerchantId(Long id){
-        return merchantRepository.findByMerchantId(id);
+        return merchantRepository.getOne(id);
     }
     public Merchant findByEmail(String email){
         return null;//merchantRepository.findByEmail(email);

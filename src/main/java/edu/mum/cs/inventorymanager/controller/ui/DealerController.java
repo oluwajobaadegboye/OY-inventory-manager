@@ -2,6 +2,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.page.Login;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,15 @@ public class DealerController {
     private DealerService dealerService;
 
     @GetMapping(value = {"", "/", "/index"})
-    public ModelAndView dealers() {
+    public ModelAndView dealers(Principal principal, HttpSession session,Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Dealer> dealers = dealerService.findAll();
+        if(principal==null){
+            modelAndView.setViewName("common/login");
+            model.addAttribute("login", new Login());
+            return modelAndView;
+        }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        List<Dealer> dealers = dealerService.findAllByMerchant(merchant);
         modelAndView.addObject("dealers", dealers);
         modelAndView.setViewName("dealers/index");
         return modelAndView;

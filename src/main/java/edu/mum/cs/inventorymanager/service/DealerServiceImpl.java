@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.repository.IDealerRepository;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class DealerServiceImpl implements DealerService {
     @Override
     public void delete(Long id) {
         dealerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Dealer> findAllByMerchant(Merchant merchant) {
+        return dealerRepository.findAllByMerchant(merchant);
     }
 }

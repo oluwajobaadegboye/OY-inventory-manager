@@ -1,6 +1,7 @@
 package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.dao.UserDao;
+import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.entity.User;
 import edu.mum.cs.inventorymanager.service.contract.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return dao.findByAll();
+    }
+
+    @Override
+    public List<User> findAllByMerchant(Merchant merchant) {
+        return dao.findAllByMerchant(merchant);
     }
 
     @Override

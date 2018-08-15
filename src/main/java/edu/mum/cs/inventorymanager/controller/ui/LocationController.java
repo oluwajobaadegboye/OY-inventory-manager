@@ -2,6 +2,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Location;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.page.Login;
 import edu.mum.cs.inventorymanager.service.contract.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,15 @@ public class LocationController {
     private LocationService locationService;
 
     @RequestMapping(value={"","/","/index","/browse"}, method=RequestMethod.GET)
-    public ModelAndView displayMerchantLocations() {
+    public ModelAndView displayMerchantLocations(Principal principal, HttpSession session,Model model) {
         ModelAndView mav = new ModelAndView();
-        List<Location> locations = locationService.findAll();
+        if(principal==null){
+            mav.setViewName("common/login");
+            model.addAttribute("login", new Login());
+            return mav;
+        }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        List<Location> locations = locationService.findMerchantLocations(merchant);
         mav.addObject("locations", locations);
         mav.setViewName("locations/index");
         return mav;
