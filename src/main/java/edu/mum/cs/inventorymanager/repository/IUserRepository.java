@@ -22,4 +22,5 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     User findByMobile(String mobile);
 
     User findByAppUser_UserNameAndAndAppUser_EncrytedPassword(String username, String encryptedPassword);
+    User findUserByAppUserUserNameAndAppUserEncrytedPassword(String userName,String encrytedPassword);
 }
