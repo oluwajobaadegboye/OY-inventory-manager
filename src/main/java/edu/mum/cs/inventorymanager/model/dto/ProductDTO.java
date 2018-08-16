@@ -10,7 +10,9 @@ public class ProductDTO {
     private double sellingPrice;
     private int quantity;
     private String status;
-//    private Merchant merchant;
+
+    public ProductDTO() {
+    }
 
     public ProductDTO(Product product) {
         id = product.getId();

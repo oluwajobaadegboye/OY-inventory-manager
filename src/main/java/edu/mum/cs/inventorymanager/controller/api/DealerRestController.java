@@ -4,10 +4,7 @@ import edu.mum.cs.inventorymanager.model.dto.DealerDTO;
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -30,5 +27,11 @@ public class DealerRestController {
     public DealerDTO getDealerById(@Valid @PathVariable long id) {
         Dealer dealer = dealerService.findOne(id);
         return new DealerDTO(dealer);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public boolean deleteDealerById(@Valid @PathVariable long id) {
+        dealerService.delete(id);
+        return true;
     }
 }

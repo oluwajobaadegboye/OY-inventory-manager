@@ -11,13 +11,43 @@ public class LocationDTO {
     private String locationName;
     private String address;
     private List<TerminalDTO> terminals;
-//    private MerchantDTO merchant;
 
     public LocationDTO(Location location) {
         locationId = location.getLocationId();
         locationName = location.getLocationName();
         address = location.getAddress();
-        terminals = location.getTerminals().stream().map(terminal -> new TerminalDTO(terminal)).collect(Collectors.toList());
-//        merchant = new MerchantDTO(location.getMerchant());
+        terminals = location.getTerminals().stream().map(TerminalDTO::new).collect(Collectors.toList());
+    }
+
+    public long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(long locationId) {
+        this.locationId = locationId;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<TerminalDTO> getTerminals() {
+        return terminals;
+    }
+
+    public void setTerminals(List<TerminalDTO> terminals) {
+        this.terminals = terminals;
     }
 }
