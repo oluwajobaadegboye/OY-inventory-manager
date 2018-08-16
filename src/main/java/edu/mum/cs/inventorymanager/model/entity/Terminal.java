@@ -15,8 +15,8 @@ public class Terminal{
     @ManyToOne
     @JoinColumn(name = "locationId")
     private Location location;
-    @OneToMany(mappedBy = "terminal", cascade = CascadeType.PERSIST)
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "terminal", cascade = CascadeType.PERSIST)
+//    private List<Order> orders;
 
     public Terminal() {
     }
@@ -25,7 +25,7 @@ public class Terminal{
         this.terminalName = terminalName;
         this.stationStatus = stationStatus;
         this.location = location;
-        this.orders = orders;
+//        this.orders = orders;
     }
 
     public long getTerminalId() {
@@ -60,11 +60,11 @@ public class Terminal{
         this.location = location;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(List<Order> orders) {
+//        this.orders = orders;
+//    }
 }

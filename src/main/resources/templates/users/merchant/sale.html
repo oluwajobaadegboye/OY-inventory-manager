@@ -26,11 +26,10 @@
 </head>
 
 
-  <body onload="load();">
+  <body>
   <th:block layout:fragment="content">
 
-this is sale product
-
+      <span style="color: green; font-size: 15px;margin: 10px;" th:text="${orderResponseMessage}"></span>
 <div style="position: absolute;left: 220px;right: 50px;top: 50px;">
 
 
@@ -80,8 +79,8 @@ this is sale product
                 <td>Total</td>
                 <td><span id="totalSpan" ></span></td>
                 <td>
-                    <a class="btn btn-success">Buy</a>
-                <!--th:onclick="@{document.location='/inventory-manager/sale/remove/{sId}'(sId=${product.id)})}">Buy</a>-->
+                    <a class="btn btn-success"
+                href="/inventory-manager/sale/buy">Buy</a>
                 </td >
 
             </tr>

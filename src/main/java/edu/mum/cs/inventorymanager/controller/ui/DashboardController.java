@@ -29,7 +29,8 @@ public class DashboardController {
             AppUser appUser = merchantService.findAppUserByUsername(principal == null ? "" : principal.getName());
             Merchant merchant = merchantService.findMerchantByAppUser(appUser);
             session.setAttribute("merchantInfo", merchant);
-            session.setAttribute("loginUsername", merchant.getUser().getFirstName());
+            session.setAttribute("appUser", appUser);
+            session.setAttribute("loginUsername", appUser.getUser().getFirstName());
             modelAndView.addObject("merchant",merchant);
             if (UserType.MERCHANT.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/merchant/dashboard");

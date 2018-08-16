@@ -23,7 +23,7 @@ public class OrderDTO {
         orderId = order.getOrderId();
         orderCode = order.getOrderCode();
         paymentMethod = order.getPaymentMethod();
-        terminal = new TerminalDTO(order.getTerminal());
+//        terminal = new TerminalDTO(order.getTerminal());
         datePurchased = order.getDatePurchased();
         orderTotal = order.getOrderTotal();
         salesUserName = order.getSalesUserName();

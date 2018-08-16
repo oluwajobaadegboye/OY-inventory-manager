@@ -1,56 +1,69 @@
-package edu.mum.cs.inventorymanager.model.entity;
+package edu.mum.cs.inventorymanager.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.mum.cs.inventorymanager.model.AmountAdapter;
 import edu.mum.cs.inventorymanager.model.DateAdapter;
-import javax.persistence.*;
+import edu.mum.cs.inventorymanager.model.entity.Product;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
-import java.util.List;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
-@Table(name = "tbl_order")
-public class Order {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class OrderLineViewDTO {
+    private long id;
+    private Product product;
+    private long quantityBought;
     private long orderId;
     private String orderCode;
     private String paymentMethod;
-//    @ManyToOne
-//    @JoinColumn(name = "terminalId", nullable = false)
-//    private Terminal terminal;
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date datePurchased = new Date();
     @XmlJavaTypeAdapter(AmountAdapter.class)
     private Double orderTotal = 0.0;
     private String salesUserName;
-    @OneToOne
-    @JoinColumn(name = "orderId")
-    private Payment payment;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Orderline> orderlines;
-    @ManyToOne
-    private Merchant merchant;
 
-    public Order() {
+    public OrderLineViewDTO() {
     }
 
-    public Order(String orderCode, String paymentMethod, Terminal terminal, Date datePurchased, Double orderTotal, String salesUserName, Payment payment, List<Orderline> orderlines) {
+    public OrderLineViewDTO(long id, Product product, long quantityBought, long orderId, String orderCode, String paymentMethod, Date datePurchased, Double orderTotal, String salesUserName) {
+        this.id = id;
+        this.product = product;
+        this.quantityBought = quantityBought;
+        this.orderId = orderId;
         this.orderCode = orderCode;
         this.paymentMethod = paymentMethod;
-//        this.terminal = terminal;
         this.datePurchased = datePurchased;
         this.orderTotal = orderTotal;
         this.salesUserName = salesUserName;
-        this.payment = payment;
-        this.orderlines = orderlines;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public long getQuantityBought() {
+        return quantityBought;
+    }
+
+    public void setQuantityBought(long quantityBought) {
+        this.quantityBought = quantityBought;
     }
 
     public long getOrderId() {
@@ -77,14 +90,6 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
-//    public Terminal getTerminal() {
-//        return terminal;
-//    }
-//
-//    public void setTerminal(Terminal terminal) {
-//        this.terminal = terminal;
-//    }
-
     public Date getDatePurchased() {
         return datePurchased;
     }
@@ -107,29 +112,5 @@ public class Order {
 
     public void setSalesUserName(String salesUserName) {
         this.salesUserName = salesUserName;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public List<Orderline> getOrderlines() {
-        return orderlines;
-    }
-
-    public void setOrderlines(List<Orderline> orderlines) {
-        this.orderlines = orderlines;
-    }
-
-    public Merchant getMerchant() {
-        return merchant;
-    }
-
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
     }
 }

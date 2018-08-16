@@ -24,6 +24,14 @@ public class Item {
         return quantity;
     }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
