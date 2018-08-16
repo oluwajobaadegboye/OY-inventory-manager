@@ -78,12 +78,15 @@ public class SaleProductController {
         return -1;
     }
 
-    @GetMapping(value = {"/remove/{id}"})
-    public String removeProduct(@PathVariable Long id, Model model,HttpSession session) {
+    @GetMapping(value = {"/buy"})
+    public String buyProduct(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
-        cart.remove(id);
-        return "redirect:users/merchant/sale";
+        System.out.println("HI YAHIA THIS IS CHART");
+        System.out.println(cart);
+       // cart.remove(id);
+        return "users/merchant/sale";
     }
+//    @PathVariable Long id, Model model,
 //    public String add(
 //            @PathVariable Long id,
 //            Principal principal,
