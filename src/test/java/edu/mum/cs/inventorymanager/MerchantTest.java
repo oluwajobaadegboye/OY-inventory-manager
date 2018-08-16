@@ -41,6 +41,12 @@ public class MerchantTest {
     }
 
     @Test
+    public void testFindById(){
+        Merchant merchant = service.findById(1L);
+        Assert.assertNotNull(merchant);
+    }
+
+    @Test
     public void testFindByMerchantName(){
         Merchant mer = service.findByMerchantName("OluwajobaBiz");
         Assert.assertTrue(mer.getMerchantName().equals("OluwajobaBiz"));

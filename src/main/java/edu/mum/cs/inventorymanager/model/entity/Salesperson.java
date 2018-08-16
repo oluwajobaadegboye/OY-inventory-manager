@@ -21,7 +21,7 @@ public class Salesperson {
 	@JoinColumn(name = "locationId")
 	private Location location;
 	private String status="Active";
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "merchantId")
 	private Merchant merchant;
 

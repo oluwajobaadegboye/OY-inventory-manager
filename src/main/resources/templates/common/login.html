@@ -7,6 +7,10 @@
     <title>Inventory Manager - New Merchant</title>
 </head>
 <body>
+<div class="error" th:if="${param.error}"
+     th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+    Reason: <span th:text="${errorMsg}">Wrong input!</span>
+</div>
   <!-- /login?error=true -->
       <div th:if="${errors}">
           Wrong Username or Password

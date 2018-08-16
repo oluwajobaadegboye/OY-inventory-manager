@@ -16,6 +16,7 @@
 
             <div class="form-group">
                 <label for="firstName">First Name</label>
+                <p th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}" class="alert alert-danger">Incorrect date</p>
                 <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}"
                       class="alert alert-danger"></span>
                 <input id="firstName" name="user.firstName" type="text" class="form-control" th:value="${merchant.user.firstName}">

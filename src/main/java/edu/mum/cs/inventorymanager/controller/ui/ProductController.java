@@ -29,7 +29,7 @@ public class ProductController {
             return mav;
         }
         Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
-        List<Product> products = productService.findAllMerchantProducts(merchant);
+        List<Product> products = productService.findAllByMerchant(merchant);
         mav.addObject("products", products);
         mav.setViewName("products/index");
         return mav;

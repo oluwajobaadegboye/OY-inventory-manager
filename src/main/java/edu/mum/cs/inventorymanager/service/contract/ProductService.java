@@ -6,5 +6,4 @@ import edu.mum.cs.inventorymanager.model.entity.Product;
 import java.util.List;
 
 public interface ProductService extends AbstractService<Product> {
-    public List<Product> findAllMerchantProducts(Merchant merchant);
 }

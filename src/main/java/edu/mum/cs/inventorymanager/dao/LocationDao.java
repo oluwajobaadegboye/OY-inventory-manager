@@ -49,4 +49,8 @@ public class LocationDao {
     public List<Location> findMerchantLocations(Merchant merchant) {
         return repository.findAllByMerchant(merchant);
     }
+
+    public List<Location> findAllByMerchant(Merchant merchant) {
+        return repository.findAllByMerchant(merchant);
+    }
 }

@@ -2,19 +2,21 @@ package edu.mum.cs.inventorymanager.service;
 
 import edu.mum.cs.inventorymanager.dao.MerchantDao;
 import edu.mum.cs.inventorymanager.model.RoleType;
+import edu.mum.cs.inventorymanager.model.UserType;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.entity.Salesperson;
 import edu.mum.cs.inventorymanager.model.entity.User;
 import edu.mum.cs.inventorymanager.model.security.AppRole;
 import edu.mum.cs.inventorymanager.model.security.AppUser;
 import edu.mum.cs.inventorymanager.model.security.UserRole;
-import edu.mum.cs.inventorymanager.repository.IAppUserRepository;
-import edu.mum.cs.inventorymanager.repository.IRoleRepository;
-import edu.mum.cs.inventorymanager.repository.IUserRoleRepository;
+import edu.mum.cs.inventorymanager.repository.*;
 import edu.mum.cs.inventorymanager.service.contract.LocationService;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import edu.mum.cs.inventorymanager.service.contract.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +30,13 @@ public class MerchantServiceImpl implements MerchantService {
     private IUserRoleRepository userRoleRepository;
     @Autowired
     private IAppUserRepository appUserRepository;
+
+    @Autowired
+    private ISalespersonRepository salespersonRepository;
+
+    @Autowired
+    private IMerchantRepository merchantRepository;
+
     @Autowired
     public MerchantServiceImpl(MerchantDao merchantDao, UserService userService, LocationService locationService) {
         this.merchantDao = merchantDao;
@@ -46,7 +55,8 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     private Merchant setAllMerchantEntity(Merchant merchant) {
-        merchant.getUser().setMerchant(merchant);
+//        merchant.getUser().setMerchant(merchant);
+        merchant.getUser().getAppUser().setUser(merchant.getUser());
         merchant.getUser().getAppUser().setUser(merchant.getUser());
         return merchant;
     }
@@ -76,16 +86,37 @@ public class MerchantServiceImpl implements MerchantService {
         return merchantDao.findByUser(user);
     }
 
+    public AppUser findAppUserByUsername(String username){
+        AppUser appUser = appUserRepository.findAppUserByUserName(username);
+        return appUser;
+    }
+
     @Override
-    public Merchant findMerchantByUsername(String s) {
-        AppUser appUser = appUserRepository.findAppUserByUserName(s);
-        Merchant merchant = appUser.getUser().getMerchant();
+    public Merchant findMerchantByAppUser(AppUser appUser) {
+        Merchant merchant = null;
+       if(UserType.MERCHANT.getType().equals(appUser.getUser().getUserType())){
+           merchant = merchantDao.findByUser(appUser.getUser());
+       }else  if(UserType.SALESPERON.getType().equals(appUser.getUser().getUserType())){
+           Salesperson salesperson =  salespersonRepository.findByUser(appUser.getUser());
+           if(salesperson!=null){
+               long merchantId = salespersonRepository.findMerchantIdBySalesmanId(salesperson.getSalesmanId());
+               merchant = merchantDao.findByMerchantId(merchantId);
+           }
+       }
+
         return merchant;
     }
 
     @Override
     public List<Merchant> findAll() {
         return merchantDao.findByAll();
+    }
+
+    @Override
+    public List<Merchant> findAllByMerchant(Merchant merchant) {
+        List<Merchant> merchants = new ArrayList<>();
+        merchants.add(merchantDao.findByMerchantId(merchant.getMerchantId()));
+        return merchants;
     }
 
     @Override
