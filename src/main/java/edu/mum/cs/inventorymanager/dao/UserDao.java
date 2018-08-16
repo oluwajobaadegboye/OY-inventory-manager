@@ -63,6 +63,6 @@ public class UserDao {
     }
 
     public User findByUserNameAndPassword(String userName, String password) {
-        return userRepository.findByAppUser_UserNameAndAndAppUser_EncrytedPassword(userName,password);
+        return userRepository.findUserByAppUserUserNameAndAppUserEncrytedPassword(userName,password);
     }
 }
