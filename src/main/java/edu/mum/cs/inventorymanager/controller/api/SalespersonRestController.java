@@ -1,5 +1,6 @@
 package edu.mum.cs.inventorymanager.controller.api;
 
+import edu.mum.cs.inventorymanager.model.dto.MerchantDTO;
 import edu.mum.cs.inventorymanager.model.dto.SalespersonDTO;
 import edu.mum.cs.inventorymanager.model.entity.Salesperson;
 import edu.mum.cs.inventorymanager.service.contract.SalespersonService;

@@ -1,6 +1,8 @@
 package edu.mum.cs.inventorymanager.model.entity;
 
 
+import edu.mum.cs.inventorymanager.model.dto.ProductDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +31,15 @@ public class Product {
         this.quantity = quantity;
         this.status = status;
         this.merchant = merchant;
+    }
+
+    public Product update(ProductDTO productDTO) {
+        name = productDTO.getName();
+        costPrice = productDTO.getCostPrice();
+        sellingPrice = productDTO.getSellingPrice();
+        quantity = productDTO.getQuantity();
+        status = productDTO.getStatus();
+        return this;
     }
 
     public long getId() {

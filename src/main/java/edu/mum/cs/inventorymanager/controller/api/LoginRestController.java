@@ -30,7 +30,6 @@ public class LoginRestController {
     public MerchantDTO login(@Valid @RequestBody Login login) throws JsonProcessingException {
 //        String encryptedPassword = EncrytedPasswordUtils.encrytePassword(login.getPassword());
 //        login.setPassword(encryptedPassword);
-        login.setPassword("$2a$10$zQ9omxGrcvWPI.xB1waxXeRXgIi2TDc9pG3IUj1WGn6sNl/U8yvSu"); // TODO:
         Merchant merchant = loginService.login(login);
         return new MerchantDTO(merchant);
     }
