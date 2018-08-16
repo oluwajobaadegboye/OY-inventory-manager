@@ -2,7 +2,6 @@ package edu.mum.cs.inventorymanager.model.entity;
 
 import edu.mum.cs.inventorymanager.model.security.AppUser;
 import edu.mum.cs.inventorymanager.utils.EncrytedPasswordUtils;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,9 +22,9 @@ public class User {
     private String userType;
     @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST, optional = false)
     private AppUser appUser;
-    @OneToOne
-    @JoinColumn(name = "merchantId")
-    private Merchant merchant;
+//    @OneToOne
+//    @JoinColumn(name = "merchantId")
+//    private Merchant merchant;
 
 
     public User() {
@@ -99,12 +98,12 @@ public class User {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-
-    public Merchant getMerchant() {
-        return merchant;
-    }
-
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
-    }
+//
+//    public Merchant getMerchant() {
+//        return merchant;
+//    }
+//
+//    public void setMerchant(Merchant merchant) {
+//        this.merchant = merchant;
+//    }
 }

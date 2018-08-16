@@ -32,6 +32,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findAllByMerchant(Merchant merchant) {
+        return productRepository.findAllByMerchant(merchant);
+    }
+
+    @Override
     public void delete(Product product) {
         product.setStatus("Deleted");
         productRepository.save(product);
@@ -47,8 +52,4 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    @Override
-    public List<Product> findAllMerchantProducts(Merchant merchant) {
-        return productRepository.findAllByMerchant(merchant);
-    }
 }

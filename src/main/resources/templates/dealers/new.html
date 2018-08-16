@@ -47,13 +47,14 @@
                 <label for="contactAddress">Contact Address</label>
                 <span th:if="${#fields.hasErrors('contactAddress')}" th:errors="*{contactAddress}"
                       class="alert alert-danger"></span>
-                <input id="contactAddress" name="contactAddress" type="text" class="form-control" th:value="${dealer.contactAddress}">
+                <input id="contactAddress" name="contactAddress" type="text" class="form-control"
+                       th:value="${dealer.contactAddress}">
             </div>
 
             <div class="form-group">
                 <label for="businessName">Business Name</label>
                 <input id="businessName" name="businessName" type="text"
-                       class="form-control" th:value="${dealer.firstName}">
+                       class="form-control" th:value="${dealer.businessName}">
             </div>
 
             <div style="float:right;">

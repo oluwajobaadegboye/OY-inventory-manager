@@ -3,6 +3,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 import edu.mum.cs.inventorymanager.model.UserType;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
 import edu.mum.cs.inventorymanager.model.page.Login;
+import edu.mum.cs.inventorymanager.model.security.AppUser;
 import edu.mum.cs.inventorymanager.service.contract.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,14 +25,15 @@ public class DashboardController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loginForm(Model model, HttpSession session, Principal principal) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
-        Merchant merchant = new Merchant();
         if (principal != null) {
-            merchant = merchantService.findMerchantByUsername(principal == null ? "" : principal.getName());
+            AppUser appUser = merchantService.findAppUserByUsername(principal == null ? "" : principal.getName());
+            Merchant merchant = merchantService.findMerchantByAppUser(appUser);
             session.setAttribute("merchantInfo", merchant);
-            modelAndView.addObject(merchant);
-            if (UserType.MERCHANT.getType().equals(merchant.getUser().getUserType())) {
+            session.setAttribute("loginUsername", merchant.getUser().getFirstName());
+            modelAndView.addObject("merchant",merchant);
+            if (UserType.MERCHANT.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/merchant/dashboard");
-            } else if (UserType.SALESPERON.getType().equals(merchant.getUser().getUserType())) {
+            } else if (UserType.SALESPERON.getType().equals(appUser.getUser().getUserType())) {
                 modelAndView.setViewName("users/saler/salerIndex");
             }
         }  else {
@@ -41,6 +43,5 @@ public class DashboardController {
 
         return modelAndView;
     }
-
 
 }

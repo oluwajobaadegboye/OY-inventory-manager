@@ -2,6 +2,7 @@ package edu.mum.cs.inventorymanager.controller.ui;
 
 import edu.mum.cs.inventorymanager.model.entity.Dealer;
 import edu.mum.cs.inventorymanager.model.entity.Merchant;
+import edu.mum.cs.inventorymanager.model.page.Login;
 import edu.mum.cs.inventorymanager.service.contract.DealerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
@@ -24,9 +23,15 @@ public class DealerController {
     private DealerService dealerService;
 
     @GetMapping(value = {"", "/", "/index"})
-    public ModelAndView dealers() {
+    public ModelAndView dealers(Principal principal, HttpSession session,Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Dealer> dealers = dealerService.findAll();
+        if(principal==null){
+            modelAndView.setViewName("common/login");
+            model.addAttribute("login", new Login());
+            return modelAndView;
+        }
+        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+        List<Dealer> dealers = dealerService.findAllByMerchant(merchant);
         modelAndView.addObject("dealers", dealers);
         modelAndView.setViewName("dealers/index");
         return modelAndView;
@@ -40,14 +45,16 @@ public class DealerController {
 
     @PostMapping(value = "/new")
     public String registerNewDealer(@Valid @ModelAttribute("dealer") Dealer dealer,
-                                    BindingResult bindingResult, Model model, HttpSession session) {
+                                    BindingResult bindingResult, Model model, Principal principal, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("dealer", dealer);
             return "dealer/new";
         }
-        Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
-        dealer.setMerchant(merchant);
+        if (principal != null) {
+            Merchant merchant = (Merchant) session.getAttribute("merchantInfo");
+            dealer.setMerchant(merchant);
+        }
         dealerService.save(dealer);
         return "redirect:/dealers/";
     }

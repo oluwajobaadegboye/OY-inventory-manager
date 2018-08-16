@@ -49,6 +49,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public List<Location> findAllByMerchant(Merchant merchant) {
+        return locationDao.findAllByMerchant(merchant);
+    }
+
+    @Override
     public void delete(Location location) {
         locationDao.delete(location);
     }
