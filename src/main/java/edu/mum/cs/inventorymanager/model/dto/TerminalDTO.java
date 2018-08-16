@@ -18,7 +18,7 @@ public class TerminalDTO {
         terminalName = terminal.getTerminalName();
         stationStatus = terminal.getStationStatus();
         location = new LocationDTO(terminal.getLocation());
-        orders = terminal.getOrders().stream().map(order -> new OrderDTO(order)).collect(Collectors.toList());
+//        orders = terminal.getOrders().stream().map(order -> new OrderDTO(order)).collect(Collectors.toList());
     }
 
     public long getTerminalId() {
